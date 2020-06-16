@@ -1,24 +1,36 @@
-# README
+#タイトル
+PortaAperta
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+portfolioの投稿サイト
 
-Things you may want to cover:
+### サイトテーマ
+ポートフォリオの共有して、アドバイス、コメント、参考、などをしてよりよく改善する。
+未経験が挑戦する目標や参考になればいい。
 
-* Ruby version
+### テーマを選んだ理由
+ポートフォリオを作って、使ってもらったり、大勢の目に触れないのはもったいないと思うので
+作って終わりでなく、使ってもらう事を目的にしたいから
+### ターゲットユーザ
+未経験〜
+itを目指す際の、目標だったり、こんなやつを作りたいと
+参考になれれば良いと考え。
 
-* System dependencies
+### 主な利用シーン
+色々な人のポートフォリオを見て、使う
+未経験、駆け出しエンジニア同士の情報交換
+## 設計書
 
-* Configuration
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1Ux16Of7pk0O2gQwcPCfKtup4-Ytjy4JDHUVjIll_0xQ/edit#gid=0
 
-* Database creation
 
-* Database initialization
+Portfolio　イタリア語が語源
 
-* How to run the test suite
+Assembly　集会　組み立て
 
-* Services (job queues, cache servers, search engines, etc.)
+Porta（運ぶ、支える、保つ　、扉、どあ）ポルタ
 
-* Deployment instructions
+aperto　開いた・開いた（あいた・ひらいた）　アペルト
 
-* ...
+Aperta アベルタ
