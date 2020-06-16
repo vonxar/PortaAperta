@@ -1,6 +1,5 @@
-##タイトル
+## タイトル
 PortaAperta
-
 ## サイト概要
 portfolioの投稿サイト
 
