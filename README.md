@@ -25,7 +25,7 @@ itを目指す際の、目標だったり、こんなやつを作りたいと
 https://docs.google.com/spreadsheets/d/1Ux16Of7pk0O2gQwcPCfKtup4-Ytjy4JDHUVjIll_0xQ/edit#gid=0
 
 
-#名前由来
+##名前由来
 Portafolio　イタリア語が語源
 
 Porta（運ぶ、支える、保つ　、扉、どあ）　ポルタ　イタリア語
