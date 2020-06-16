@@ -1,4 +1,4 @@
-#タイトル
+##タイトル
 PortaAperta
 
 ## サイト概要
@@ -25,12 +25,9 @@ itを目指す際の、目標だったり、こんなやつを作りたいと
 https://docs.google.com/spreadsheets/d/1Ux16Of7pk0O2gQwcPCfKtup4-Ytjy4JDHUVjIll_0xQ/edit#gid=0
 
 
-Portfolio　イタリア語が語源
+#名前由来
+Portafolio　イタリア語が語源
 
-Assembly　集会　組み立て
+Porta（運ぶ、支える、保つ　、扉、どあ）　ポルタ　イタリア語
 
-Porta（運ぶ、支える、保つ　、扉、どあ）ポルタ
-
-aperto　開いた・開いた（あいた・ひらいた）　アペルト
-
-Aperta アベルタ
+aperta　開いた・開いた（あいた・ひらいた）　アペルト イタリア語
