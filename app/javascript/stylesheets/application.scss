@@ -1,0 +1,11 @@
+
+@import "~bootstrap/scss/bootstrap";
+ul {
+  list-style: none;
+  li{
+    margin: 10px;
+    a{
+        color: white;
+    }
+  }
+}

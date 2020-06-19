@@ -4,33 +4,35 @@
     <title>PortaAperta</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <heder>
-    <div class="container">
+
              <nav>
-              <ul class="nav navbar-nav navbar-right wf-mplus1p">
+              <ul class="navbar navbar-dark bg-dark justify-content-end sticky-top ">
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
-                  <li id="youkoso">ようこそ！</li>
-                  <li><%= link_to "#" %><i class="fas fa-user"></i>マイページ<% end %></li>
+                  <li><%= link_to "#" do %><i class="fas fa-user"></i>マイページ<% end %></li>
                   <li><%= link_to "#" do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
-                  <li><%= link_to "#" do %><div class="icon-flex"></i>
-                  <li><%= link_to "#", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
+                  <li><%= link_to "#" do %><div class="icon-flex"><% end %></i>
+                  <li><%= link_to destroy_user_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
                 <!-- ログインしていない時 -->
-              
-                  <li><%= link_to "#" do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
-                  <li><%= link_to "#" do %><i class="fas fa-building"></i>会社概要<% end %></li>
-                  <li><%= link_to "#" do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
-                  <li><%= link_to "#" do %><i class="fas fa-sign-in-alt"></i>ログイン<% end %></li>
+                <% else %>
+                  <li class="nav-item"><%= link_to "#" do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li class="nav-item"><%= link_to "#" do %><i class="fas fa-building"></i>会社概要<% end %></li>
+                  <li class="nav-item"><%= link_to "#" do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
+                  <li class="nav-item"><%= link_to new_user_session_path do %><i class="fas fa-sign-in-alt"></i>ログイン<% end %></li>
+                  <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></li>
                 <% end %>
               </ul>
             </nav>
+           
   </heder>
 
   <body>
+   <div class="container">
     <%= yield %>
+   </div>
   </body>
 </html>

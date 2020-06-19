@@ -1,1 +1,4 @@
-<h1>hello</h1>
+
+<%= image_tag "door2.jpg" ,style: "width:100%; position: absolute; height: 100vh; top:0; left:0;"%>
+ <%= button_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-secondary " ,style: "position: absolute; top:50%; left:30%;"%>
+ <%= button_to 'ログイン', new_user_session_path,method: :get ,class: "btn btn-danger " ,style: "position: absolute; top:50%; right:40%;"%>
