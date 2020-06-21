@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -40,6 +40,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
 end
 
 group :test do
@@ -65,4 +66,8 @@ gem 'acts-as-taggable-on', '~> 6.0' #タグ機能
 gem 'ransack' #検索機能
 gem 'impressionist', '~>1.6.1' #railsでページビューをトラッキング
 gem 'omniauth' #SNS認証/ログイン
+gem 'rails-i18n'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # gem 'dotenv-rails' 環境変数化
+gem 'actiontext'
+# gem 'mini_magick'

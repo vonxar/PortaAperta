@@ -1,0 +1,36 @@
+<h1>マイページです。</h1>
+
+ <%= form_for(@portfolio, url:portfolios_path,method: "post") do |f| %>
+ <!--form_for(@micropost, url: micropost_path(@micropost), html: {method: "patch"})　-->
+ 
+      <div class="portfolio-image">
+        <%= attachment_image_tag @portfolio, :image, class: "img-square", fallback: "noimage.svg", size:"300x300" %>
+      </div><br>
+
+      <%= f.attachment_field :image, placeholder: "画像" %>
+      
+  <div class="ield">
+          <%= f.label :title %>
+          <%= f.text_field :title, autofocus: true, autocomplete: "title"%>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.rich_text_area :body %>
+  </div>
+  <div><%= f.submit "portfolio登録" ,class: "btn btn-primary"%></div>
+<% end %>
+
+<div class="row row-cols-2">
+    <% @user_portfolios.each do |port| %>
+    <div class="col">
+      <h1 style="margin-top:50px;"><%= port.title %></h1> 
+      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br>
+      <%= port.body %>
+      <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning" %>
+      <%= link_to '削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
+    </div>
+    <% end %>
+</div>
+
+

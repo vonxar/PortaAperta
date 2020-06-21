@@ -1,0 +1,14 @@
+<div class="row row-cols-2">
+    <% @portfolios.each do |port| %>
+    <div class="col">
+     <%= link_to portfolio_path(port.id) do %>
+      <h1 style="margin-top:50px;"><%= port.title %></h1> 
+      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br>
+      <%= port.body %><% end %>
+      <%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
+    </div>
+    <% end %>
+</div>
+
+
+

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :favorites
   has_many :likes
-  has_many :portfolios
+  has_many :portfolios,dependent: :destroy
   has_many :comments
   
    def self.guest
