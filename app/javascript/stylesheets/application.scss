@@ -1,5 +1,12 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
+container{
+  height: 90vh;
+}
+
+li{
+   list-style: none;
+}
 ul {
   list-style: none;
   li{
