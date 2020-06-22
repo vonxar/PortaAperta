@@ -19,18 +19,35 @@
     <%= f.rich_text_area :body %>
   </div>
   <div><%= f.submit "portfolio登録" ,class: "btn btn-primary"%></div>
-<% end %>
+<% end %><br>
 
+<h2>投稿済一覧</h2>
 <div class="row row-cols-2">
     <% @user_portfolios.each do |port| %>
     <div class="col">
+      <%= link_to portfolio_path(port.id) do %>
       <h1 style="margin-top:50px;"><%= port.title %></h1> 
-      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br>
+      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %>
       <%= port.body %>
       <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning" %>
       <%= link_to '削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
     </div>
     <% end %>
+</div>
+
+<h3>お気に入り</h3><br>
+<div class="row row-cols-2">
+<% @favorites.each do |favo| %>
+<div class="col">
+  <%= link_to portfolio_path(favo.id) do %>
+<%= favo.title %>
+<%= attachment_image_tag favo, :image, size: "500x400",  fallback: "noimage.svg"%><% end %>
+<%= favo.body %>
+ <div id="favorite_btn_<%= favo.id %>">
+    <%= render 'favorites/favorite',port: favo %>
+ </div>
+</div>
+<% end %>
 </div>
 
 

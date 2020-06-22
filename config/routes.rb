@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :users
   resources :portfolios do
    resources :comments,only: %i[create destroy]
-   resources :likes,only: %i[create destroy]
-   resources :favorites,only: %i[create destroy]
+   resource :likes,only: %i[create destroy]
+   resource :favorites,only: %i[create destroy]
   end
   resources :categorys
   get '/about' => 'homes#about'

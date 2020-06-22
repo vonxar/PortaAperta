@@ -3,3 +3,30 @@
 <p><%= @portfolio.title %></p><br>
 <p>本文</p>
 <p><%= @portfolio.body %></p>
+
+<!-- コメント入力 -->
+<%= form_for [@portfolio, @comment] do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+          <h3>コメント</h3>
+            <%= f.text_area :comment, rows:'4', class: "form-control",placeholder: "コメントをここに" %>
+        </div>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-primary" %>
+<% end %><br>
+<!-- </form> -->
+
+<h3>コメント一覧</h3>
+<table class="table">
+    <% @portfolio.comments.each do |comment| %>
+     <tr>
+        <td><a href="#" class="link-autdor"><%= comment.user.name %></a></td>
+        <td><%= comment.comment %></td>
+        <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+       <% if comment.user == current_user %>
+         <td><%= link_to '削除', portfolio_comment_path(comment.portfolio.id,comment.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger"%></td>
+       <% end %>
+     </tr>
+    <% end %>
+</table>
+

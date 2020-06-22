@@ -5,6 +5,18 @@
       <h1 style="margin-top:50px;"><%= port.title %></h1> 
       <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br>
       <%= port.body %><% end %>
+      <p><%= port.comments.count %>件コメント</p>
+      
+      <!--いいね-->
+      <div id="like_btn_<%= port.id %>">
+      <%= render 'likes/like',port: port %>
+      </div>
+      <!--いいねend-->
+      
+      <div id="favorite_btn_<%= port.id %>">
+       <%= render 'favorites/favorite',port: port %>
+      </div>
+      
       <%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
     </div>
     <% end %>

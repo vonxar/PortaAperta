@@ -5,10 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   # アソシエーション
-  has_many :favorites
-  has_many :likes
+  has_many :favorites,dependent: :destroy
+  has_many :favorite_portfolios, through: :favorites, source: :portfolio
+  has_many :likes,dependent: :destroy
   has_many :portfolios,dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   
    def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
