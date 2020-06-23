@@ -5,6 +5,11 @@
       <h1 style="margin-top:50px;"><%= port.title %></h1> 
       <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br>
       <%= port.body %><% end %>
+       タグ: 
+       <% port.tag_list.each do |tag| %>
+        <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
+       <% end %>
+       
       <p><%= port.comments.count %>件コメント</p>
       
       <!--いいね-->

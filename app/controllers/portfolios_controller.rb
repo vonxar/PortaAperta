@@ -2,8 +2,11 @@ class PortfoliosController < ApplicationController
   
   def top
     @portfolios = Portfolio.all
-    @p = Portfolio.find_by(user_id: current_user.id)
+    if params[:tag_name]
+      @portfolios = Portfolio.tagged_with("#{params[:tag_name]}")
+    end
   end
+  
   
   def show
     @portfolio = Portfolio.find(params[:id])
@@ -48,7 +51,7 @@ class PortfoliosController < ApplicationController
 private
 
   def portfolio_params
-  	params.require(:portfolio).permit(:title,:body,:image,:category_id)
+  	params.require(:portfolio).permit(:title,:body,:image,:category_id,:tag_list)
   end
   
   

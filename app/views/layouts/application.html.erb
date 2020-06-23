@@ -9,12 +9,18 @@
     <script src="https://kit.fontawesome.com/f95b9e0dc0.js" crossorigin="anonymous"></script>
   </head>
   <heder>
-
              <nav>
-              <ul class="navbar navbar-dark bg-dark justify-content-end sticky-top ">
+              <ul class="navbar nav-pills navbar-dark bg-dark justify-content-end sticky-top ">
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
-                  <li><%= link_to user_path(current_user.id) do %><i class="fas fa-user"></i>マイページ<% end %></li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i>マイページ</a>
+                  <div class="dropdown-menu">
+                   <a class="dropdown-item" href="/users/<%= current_user.id %>" data-turbolinks="false">マイページ</a>
+                    <a class="dropdown-item" href="#1" data-turbolinks="false">投稿</a>
+                     <a class="dropdown-item" href="#2" data-turbolinks="false">投稿一覧</a>
+                      <a class="dropdown-item" href="#3" data-turbolinks="false">お気に入り</a>
+                   </div></li>
                   <li><%= link_to top_path do %><i class="fas fa-cookie-bite"></i>一覧<% end %></li>
                   <li><%= link_to destroy_user_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
                 <!-- ログインしていない時 -->
@@ -33,7 +39,7 @@
   <body>
     <%= flash_message(flash[:success], :success) if flash[:success] %> <!--緑 flash messge application_helperに記述-->
     <%= flash_message(flash[:error], :danger) if flash[:error] %> <!-- 赤 -->
-    <%= flash_message(flash[:alert], :warning) if flash[:alert] %> <!--黄　 -->
+    <%= flash_message(flash[:alert], :warning) if flash[:alert] %> <!--黄-->
     <%= flash_message(flash[:notice], :info) if flash[:notice] %> <!--青 -->
    <div class="container" style="min-width:80%;">
     <%= yield %>
