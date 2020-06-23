@@ -19,12 +19,12 @@ import * as Trix from "trix";
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-tagsinput
 //= require_tree .
 // import 'bootstrap-material-design'
 import '../stylesheets/application'
 import "bootstrap";
-global.$ = jQuery;
+// global.$ = jQuery;
 
 // $(function(){
 // $('.container').mouseover(function(){
@@ -33,3 +33,34 @@ global.$ = jQuery;
 // });
 require("trix")
 require("@rails/actiontext")
+
+
+ $(function(){
+        // #で始まるリンクをクリックしたら実行されます
+        $('a[href^="#"]').click(function() {
+          
+          // スクロールの速度
+          var speed = 400; // ミリ秒で記述
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $('body,html').animate({scrollTop:position}, speed, 'swing');
+          return false;
+        });
+   });
+   
+   
+   
+   
+   $(function(){
+    // inputのidから情報の取得
+    $('#portfolio_image').on('change', function (e) {
+// ここから既存の画像のurlの取得
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".attachment.portfolio.image.img-square.fallback").attr('src', e.target.result);
+    }
+// ここまで
+    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});

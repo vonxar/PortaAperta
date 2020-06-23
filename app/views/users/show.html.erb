@@ -1,7 +1,20 @@
-<h1>マイページです。</h1>
+<div class="side">
+<h5>マイページです。</h5>
+<ul>
+<li><a href="#1">投稿</a></li>
+<li><a href="#2">投稿一覧</a></li>
+<li><a href="#3">お気に入り</a></li>
+</ul>
+</div>
 
+
+<h2 id="1">投稿</h2>
  <%= form_for(@portfolio, url:portfolios_path,method: "post") do |f| %>
- <!--form_for(@micropost, url: micropost_path(@micropost), html: {method: "patch"})　-->
+ 
+      <div class="tag-field">
+       <%= f.label :portfolio, "タグ      使い方（ ,をつけると複数のタグを付けられます）" %>
+       <%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,ruby,javascript", data: {role: "tagsinput"},class: "form-control" %>
+       </div>
  
       <div class="portfolio-image">
         <%= attachment_image_tag @portfolio, :image, class: "img-square", fallback: "noimage.svg", size:"300x300" %>
@@ -21,7 +34,8 @@
   <div><%= f.submit "portfolio登録" ,class: "btn btn-primary"%></div>
 <% end %><br>
 
-<h2>投稿済一覧</h2>
+
+<h2 id="2">投稿済一覧</h2>
 <div class="row row-cols-2">
     <% @user_portfolios.each do |port| %>
     <div class="col">
@@ -35,19 +49,18 @@
     <% end %>
 </div>
 
-<h3>お気に入り</h3><br>
+
+<h3 id="3">お気に入り</h3><br>
 <div class="row row-cols-2">
 <% @favorites.each do |favo| %>
 <div class="col">
   <%= link_to portfolio_path(favo.id) do %>
-<%= favo.title %>
+<%= favo.title %><br>
 <%= attachment_image_tag favo, :image, size: "500x400",  fallback: "noimage.svg"%><% end %>
-<%= favo.body %>
+<%= favo.body %><br>
  <div id="favorite_btn_<%= favo.id %>">
     <%= render 'favorites/favorite',port: favo %>
  </div>
 </div>
 <% end %>
 </div>
-
-

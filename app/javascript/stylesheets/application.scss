@@ -1,9 +1,10 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
+@import "bootstrap-tagsinput";
+
 container{
   height: 90vh;
 }
-
 li{
    list-style: none;
 }
@@ -58,3 +59,28 @@ trix-editor {
     }
   }
 }
+
+.side{
+  h5{
+    color:black;
+  }
+  ul{
+    margin-left:-50px;
+    a{
+    color:black;
+    }
+  }
+  
+width:160px;
+position:fixed;
+_position:absolute;
+top:100px;
+left:0px;
+height: 100%;
+overflow: auto;
+}
+
+
+
+
+
