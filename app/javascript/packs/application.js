@@ -102,7 +102,7 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
     $.ajax({ //ajax通信で以下のことを行います
       url: '/portfolios/search', //urlを指定
       type: 'GET', //メソッドを指定
-      data: ('keyword=' + input), //コントローラーに渡すデータを'keyword=input(入力された文字のことですね)'にするように指定
+      data: ('word=' + input), //コントローラーに渡すデータを'word=input(入力された文字のことですね)'にするように指定
       processData: false, //おまじない
       contentType: false, //おまじない
       dataType: 'json' //データ形式を指定

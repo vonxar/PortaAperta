@@ -22,4 +22,19 @@ class Portfolio < ApplicationRecord
   #has_one_attached :body
    
   attachment :image
+  
+  #ソート
+  def self.sort(selection)
+    case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'old'
+      return all.order(created_at: :ASC)
+    when 'likes'
+      return find(Like.group(:portfolio_id).order(Arel.sql('count(portfolio_id) desc')).pluck(:portfolio_id))
+    when 'dislikes'
+      return find(Like.group(:portfolio_id).order(Arel.sql('count(portfolio_id) asc')).pluck(:portfolio_id))
+    end
+  end
+  
 end

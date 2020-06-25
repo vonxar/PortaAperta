@@ -70,3 +70,4 @@ gem 'rails-i18n'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'dotenv-rails' #環境変数化
 gem 'actiontext'
+gem 'faraday'
