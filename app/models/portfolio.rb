@@ -7,7 +7,6 @@ class Portfolio < ApplicationRecord
   has_many :comments,dependent: :destroy
   
   acts_as_taggable
-  acts_as_taggable_on :tag, :interests
 	
   # いいね判定
    def liked_by?(user)

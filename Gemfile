@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -52,8 +52,6 @@ group :test do
   gem 'webdrivers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ---追加-------
 gem 'devise'
@@ -71,4 +69,3 @@ gem 'rails-i18n'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # gem 'dotenv-rails' 環境変数化
 gem 'actiontext'
-gem 'acts-as-taggable-on', '~> 6.0' #タグ
