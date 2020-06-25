@@ -1,7 +1,7 @@
 class PortfoliosController < ApplicationController
   
   def top
-    @portfolios = Portfolio.all
+    @portfolios = Portfolio.order("created_at DESC")
     if params[:tag_name]
       @portfolios = Portfolio.tagged_with("#{params[:tag_name]}")
     end
@@ -49,9 +49,13 @@ class PortfoliosController < ApplicationController
   end
   
   def search
-    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%") #paramsとして送られてきたkeyword（入力された語句）で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
-    # @portfolios = Portfolio.where('id LIKE(?)', "%#{params[:keyword]}%")
-    render json: @users
+    if params[:word].blank?
+      selection = params[:portfolio][:keyword]
+      @portfolios = Portfolio.sort(selection)
+    else
+      @users = User.where('name LIKE(?)', "%#{params[:word]}%") #paramsとして送られてきたword（入力された語句）で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
+      render json: @users
+    end
   end
   
 private

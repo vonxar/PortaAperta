@@ -1,34 +1,14 @@
+<!--インクリメンタル検索-->
 <input type=form id="search" placeholder="検索内容を入力してください" style="width: 250px;"/>
 <ul id="result">
 </ul>
-<div class="row row-cols-2">
-    <% @portfolios.each do |port| %>
-    <div class="col">
-     <%= link_to portfolio_path(port.id) do %>
-      <h1 style="margin-top:50px;"><%= port.title %></h1> 
-      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %>
-      <%= port.body %>
-       タグ: 
-       <% port.tag_list.each do |tag| %>
-        <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
-       <% end %>
-       
-      <p><%= port.comments.count %>件コメント</p>
-      
-      <!--いいね-->
-      <div id="like_btn_<%= port.id %>">
-      <%= render 'likes/like',port: port %>
-      </div>
-      <!--いいねend-->
-      
-      <div id="favorite_btn_<%= port.id %>">
-       <%= render 'favorites/favorite',port: port %>
-      </div>
-      
-      <%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
-    </div>
-    <% end %>
-</div>
 
+<!--ソート機能-->
+<%= render 'select_form', portfolios: @portfolios %>
+
+<!--投稿一覧-->
+<div class="row row-cols-2 ports">
+<%= render partial: 'portfolio_all',collection: @portfolios,as: "port" %>
+</div>
 
 
