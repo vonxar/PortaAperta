@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
    devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+     # omniauth_callbacks: "users/omniauth_callbacks" github_sns_sign _in
   }
    devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'

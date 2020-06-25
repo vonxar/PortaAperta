@@ -35,7 +35,7 @@ class PortfoliosController < ApplicationController
     	 @portfolio = Portfolio.find(params[:id])
     if @portfolio.update(portfolio_params)
     	flash[:notice] ="編集を反映しました。"
-        redirect_to top_path(@portfolio.user_id)
+        redirect_to top_path
     else
     	@user = current_user.id
     	render :edit

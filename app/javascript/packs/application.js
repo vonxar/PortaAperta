@@ -21,10 +21,10 @@ import * as Trix from "trix";
 //= require jquery_ujs
 //= require bootstrap-tagsinput
 //= require_tree .
-// import 'bootstrap-material-design'
+
 import '../stylesheets/application'
 import "bootstrap";
-// global.$ = jQuery;
+global.$ = jQuery;
 
 // $(function(){
 // $('.container').mouseover(function(){
@@ -62,5 +62,30 @@ require("@rails/actiontext")
     }
 // ここまで
     reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});
+
+$(function() {
+        $('input').on("keydown",function(e){
+        if  (e.keyCode == 188) {
+            var btn = $('#portfolio_tag_list').val();
+        $('.output').append('<span class="badge badge-primary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" ");
+          $("#portfolio_tag_list").val("");
+          return false;
+        } });
+        $('body').on('click','.badge-primary',function(){
+            var id =  $(this).attr("id");
+          console.log(id);
+          $('#'+id).remove();
+        });
+});
+        
+
+$(function() {
+  $("body").on('click','#tag_lists',function(){
+var tags = $('.badge-primary').map(function(){
+  return this.id;
+}).get();
+ $("#hid").val(tags);
 });
 });

@@ -12,8 +12,9 @@
  <%= form_for(@portfolio, url:portfolios_path,method: "post") do |f| %>
  
       <div class="tag-field">
-       <%= f.label :portfolio, "タグ      使い方（ ,をつけると複数のタグを付けられます）" %>
-       <%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,ruby,javascript", data: {role: "tagsinput"},class: "form-control" %>
+       <%= f.label :portfolio, "タグ" %>
+       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},class: "form-control" %></div>
+       <%= f.hidden_field :tag_list,:value => @portfolio.tag_list.join(','), id: "hid"%>
        </div>
  
       <div class="portfolio-image">
@@ -31,7 +32,7 @@
     <%= f.label :body %>
     <%= f.rich_text_area :body %>
   </div>
-  <div><%= f.submit "portfolio登録" ,class: "btn btn-primary"%></div>
+  <div><%= f.submit "portfolio登録" ,class: "btn btn-primary",id: "tag_lists"%></div>
 <% end %><br>
 
 

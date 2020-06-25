@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: ca6e689e6216a8e9d0c011747cf5c36ec476a04d
+  revision: 605b405ff9804df525ced6186991b5313f40e0a9
   branch: master
   specs:
-    faker (2.12.0)
+    faker (2.13.0)
       i18n (>= 1.6, < 2)
 
 GEM
@@ -84,7 +84,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.32.2)
+    capybara (3.33.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -104,6 +104,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     ffi (1.13.1)
     globalid (0.4.2)
@@ -334,8 +338,9 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  dotenv-rails
   faker!
-  image_processing (~> 1.2)
+  image_processing (~> 1.11)
   impressionist (~> 1.6.1)
   jbuilder (~> 2.7)
   jquery-rails
@@ -357,7 +362,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
-  tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

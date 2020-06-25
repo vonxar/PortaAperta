@@ -1,0 +1,10 @@
+<%= form_for [portfolio, comment],remote: true do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+          <h3>コメント</h3>
+            <%= f.text_area :comment, rows:'4', class: "form-control",placeholder: "コメントをここに" %>
+        </div>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-primary" %>
+<% end %><br>
+

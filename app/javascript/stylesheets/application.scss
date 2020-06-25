@@ -1,6 +1,5 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
-@import "bootstrap-tagsinput";
 
 container{
   height: 90vh;
@@ -80,7 +79,8 @@ height: 100%;
 overflow: auto;
 }
 
-
-
-
-
+span{
+  a:hover{
+    cursor: pointer;
+  }
+}
