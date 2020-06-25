@@ -65,7 +65,8 @@ gem 'acts-as-taggable-on', '~> 6.0' #タグ機能
 gem 'ransack' #検索機能
 gem 'impressionist', '~>1.6.1' #railsでページビューをトラッキング
 gem 'omniauth' #SNS認証/ログイン
+# gem 'omniauth-github' #インストールすると、エラー
 gem 'rails-i18n'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-# gem 'dotenv-rails' 環境変数化
+gem 'dotenv-rails' #環境変数化
 gem 'actiontext'
