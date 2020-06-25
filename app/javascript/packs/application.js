@@ -34,7 +34,7 @@ global.$ = jQuery;
 require("trix")
 require("@rails/actiontext")
 
-
+//userページのスクロール機能
  $(function(){
         // #で始まるリンクをクリックしたら実行されます
         $('a[href^="#"]').click(function() {
@@ -48,10 +48,10 @@ require("@rails/actiontext")
           return false;
         });
    });
+//-----end-----------
    
    
-   
-   
+//画像プレビュー
    $(function(){
     // inputのidから情報の取得
     $('#portfolio_image').on('change', function (e) {
@@ -64,7 +64,9 @@ require("@rails/actiontext")
     reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
 });
 });
+//--------end----------
 
+//タグ化機能
 $(function() {
         $('input').on("keydown",function(e){
         if  (e.keyCode == 188) {
@@ -80,7 +82,6 @@ $(function() {
         });
 });
         
-
 $(function() {
   $("body").on('click','#tag_lists',function(){
 var tags = $('.badge-primary').map(function(){
@@ -89,3 +90,38 @@ var tags = $('.badge-primary').map(function(){
  $("#hid").val(tags);
 });
 });
+
+//----------end-----------
+
+// インクリメンタルサーチ
+$(document).on('turbolinks:load', function(){ //リロードしなくてもjsが動くようにする
+  $(document).on('keyup', '#search', function(e){ //このアプリケーション(document)の、formというid('#form')で、キーボードが押され指が離れた瞬間(.on('keyup'...))、eという引数を取って以下のことをしなさい(function(e))
+    e.preventDefault(); //キャンセル可能なイベントをキャンセル
+    var input = $.trim($(this).val()); //この要素に入力された語句を取得し($(this).val())、前後の不要な空白を取り除いた($.trim(...);)上でinputという変数に(var input =)代入
+    if (input.length !== 0){
+    $.ajax({ //ajax通信で以下のことを行います
+      url: '/portfolios/search', //urlを指定
+      type: 'GET', //メソッドを指定
+      data: ('keyword=' + input), //コントローラーに渡すデータを'keyword=input(入力された文字のことですね)'にするように指定
+      processData: false, //おまじない
+      contentType: false, //おまじない
+      dataType: 'json' //データ形式を指定
+    })
+      .done(function(data){//データを受け取ることに成功したら、dataを引数に取って以下のことする(dataには@usersが入っている状態ですね)
+      $('#result').find('li').remove();  //idがresultの子要素のliを削除する
+        if(data.length !== 0){
+      $(data).each(function(i, user){ //dataをuserという変数に代入して、以下のことを繰り返し行う(単純なeach文ですね)
+        $('#result').append('<li>' + '<a class="search_a"  href="/users/'+user.id+'">'+ user.name +'</a>'+ '</li>')//resultというidの要素に対して、<li>ユーザーの名前</li>を追加する。
+      });
+      } else {  $('#result').append('<li>' + "一致するユーザーがありません" + '</li>')
+      }
+    });
+    } else{
+    $('#result').find('li').remove();
+    }
+  });
+});
+
+//---------end------------
+
+

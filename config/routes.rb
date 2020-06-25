@@ -12,6 +12,9 @@ Rails.application.routes.draw do
    resources :comments,only: %i[create destroy]
    resource :likes,only: %i[create destroy]
    resource :favorites,only: %i[create destroy]
+   collection do
+      get 'search'
+    end
   end
   resources :categorys
   get '/about' => 'homes#about'

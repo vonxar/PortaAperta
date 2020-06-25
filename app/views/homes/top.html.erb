@@ -3,8 +3,8 @@
  <%= button_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-secondary " ,style: "position: absolute; top:50%; left:30%;"%>
  <%= button_to 'ログイン', new_user_session_path,method: :get ,class: "btn btn-danger " ,style: "position: absolute; top:50%; right:40%;"%>
  
-  <p><%= notice %><%= alert %></p>
- <% if user_signed_in? %>
- <% else %>
-   <%= link_to 'githubでサインアップしてね', user_github_omniauth_authorize_path %>
- <% end %>
+ <!-- <p><%= notice %><%= alert %></p>-->
+ <!--<% if user_signed_in? %>-->
+ <!--<% else %>-->
+ <!--  <%= link_to 'githubでサインアップしてね', user_github_omniauth_authorize_path %>-->
+ <!--<% end %> github_sns_sign_in-->
