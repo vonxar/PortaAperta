@@ -7,6 +7,7 @@ class Portfolio < ApplicationRecord
   has_many :comments,dependent: :destroy
   
   acts_as_taggable
+  
 	
   # いいね判定
    def liked_by?(user)
@@ -22,7 +23,7 @@ class Portfolio < ApplicationRecord
   #has_one_attached :body
    
   attachment :image
-  
+  is_impressionable
   #ソート
   def self.sort(selection)
     case selection

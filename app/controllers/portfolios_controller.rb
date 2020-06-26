@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+   impressionist :actions=>[:show]
+ 
   
   def top
     @portfolios = Portfolio.order("created_at DESC")
@@ -11,6 +13,7 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = Portfolio.find(params[:id])
     @comment = Comment.new
+    
   end
   
   def create
