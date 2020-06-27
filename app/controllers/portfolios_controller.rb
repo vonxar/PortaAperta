@@ -1,6 +1,4 @@
 class PortfoliosController < ApplicationController
-   impressionist :actions=>[:show]
- 
   
   def top
     @portfolios = Portfolio.order("created_at DESC")
@@ -13,6 +11,8 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = Portfolio.find(params[:id])
     @comment = Comment.new
+    impressionist(@portfolio, nil, :unique => [:session_hash])
+    @page_views = @portfolio.impressionist_count
     
   end
   

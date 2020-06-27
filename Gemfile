@@ -63,11 +63,16 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 gem 'acts-as-taggable-on', '~> 6.0' #タグ機能
 gem 'ransack' #検索機能
-# gem 'impressionist' #railsでページビューをトラッキング
-gem 'omniauth' #SNS認証/ログイン
-# gem 'omniauth-github' #インストールすると、エラー
+#gem 'omniauth' #SNS認証/ログイン
+#gem 'omniauth-github' #インストールすると、エラー
+#gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth'
+# gem 'omniauth-github'
 gem 'rails-i18n'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'dotenv-rails' #環境変数化
 gem 'actiontext'
 
+gem 'impressionist' #railsでページビューをトラッキング
+
+#gem 'faraday'

@@ -1,9 +1,18 @@
 <!--ポートフォリオ一覧-->
     <div class="col">
      <%= link_to portfolio_path(port.id) do %>
-      <h1 style="margin-top:50px;"><%= port.title %></h1> 
-      <%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %>
+      
+      <div class="main_portfolio">
+      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %><h1><%= port.title %></h1> </div>
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#portfolio<%=port.id%>" aria-expanded="false" aria-controls="collapseExample">
+       本文を表示する
+      </button>
+      <div class="collapse" id="portfolio<%=port.id%>">
+      <div class="card card-body">
       <%= port.body %>
+      </div>
+      </div><br>
+     <div class="included">
        タグ: 
        <% port.tag_list.each do |tag| %>
         <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
@@ -11,17 +20,23 @@
        
       <p><%= port.comments.count %>件コメント</p>
       
+      <div class="row row-cols-2">
+       <div class="col">
       <!--いいね-->
       <div id="like_btn_<%= port.id %>">
       <%= render 'likes/like',port: port %>
       </div>
       <!--いいねend-->
-      
       <div id="favorite_btn_<%= port.id %>">
        <%= render 'favorites/favorite',port: port %>
       </div>
-      
+      </div>
+      <div class="col">
+      <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning" %>
       <%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
     </div>
-    
+    </div>
+    </div>
+    </div>
+    </div>
 

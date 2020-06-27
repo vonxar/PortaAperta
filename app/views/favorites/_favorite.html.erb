@@ -1,5 +1,8 @@
     <% unless port.favorited_by?(current_user) %>
-      <i class="far fa-star"><%= link_to "お気に入り登録",portfolio_favorites_path(port),method: :post ,remote: true %></i>
+      <%= link_to portfolio_favorites_path(port),method: :post ,remote: true do %>
+      <i class="far fa-star"></i>お気に入り登録<% end %>
     <% else %>
-      <i class="fas fa-star" style="color: #ffcc00;"></i><%= link_to "お気に入り解除",portfolio_favorites_path(port),method: :delete,remote: true  %></i>
+      <%= link_to portfolio_favorites_path(port),method: :delete,remote: true do  %></i>
+      <i class="fas fa-star" style="color: gold; "></i>お気に入り解除<% end %>
     <% end %>
+    
