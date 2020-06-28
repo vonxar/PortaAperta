@@ -76,3 +76,6 @@ gem 'actiontext'
 gem 'impressionist' #railsでページビューをトラッキング
 
 #gem 'faraday'
+group :production do
+  gem 'mysql2'
+end
