@@ -4,8 +4,19 @@
 <div class="row justify-content-md-center">
 
   <%= form_for(@portfolio) do |f| %>
+  <div class="tag-field">
+       <%= f.label :portfolio, "タグ" %>
+       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},class: "form-control" %></div>
+       <%= f.hidden_field :tag_list,:value => @portfolio.tag_list.join(','), id: "hid"%>
+       </div><br>
+ 
+      <div class="portfolio-image">
+        <%= attachment_image_tag @portfolio, :image, class: "img-square", fallback: "noimage.svg", size:"300x300" %>
+      </div><br>
+
+      <%= f.attachment_field :image, placeholder: "画像" %>
 	<%= f.label :title, 'Title' %>
-	<%= f.text_field :title%>
+	<%= f.text_field :title%><br>
 	<%= f.label :body, '本文' %>
 	<%= f.rich_text_area :body%><br>
 	<%= f.submit "編集保存" ,class: "btn btn-primary" %>

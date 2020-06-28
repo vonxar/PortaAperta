@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   acts_as_taggable_on :tags
   
-  
+  attachment :profile_image
   
    def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

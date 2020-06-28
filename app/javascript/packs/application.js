@@ -52,13 +52,27 @@ require("@rails/actiontext")
    
    
 //画像プレビュー
+// portfolio
    $(function(){
     // inputのidから情報の取得
-    $('#portfolio_image').on('change', function (e) {
+     $('#portfolio_image').on('change', function (e) {
 // ここから既存の画像のurlの取得
     var reader = new FileReader();
     reader.onload = function (e) {
-        $(".attachment.portfolio.image.img-square.fallback").attr('src', e.target.result);
+        $(".attachment.portfolio.image").attr('src', e.target.result);
+    }
+// ここまで
+    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});
+  // user
+   $(function(){
+    // inputのidから情報の取得
+     $('#user_profile_image').on('change', function (e) {
+// ここから既存の画像のurlの取得
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $(".attachment.user.profile_image").attr('src', e.target.result);
     }
 // ここまで
     reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
@@ -77,7 +91,6 @@ $(function() {
         } });
         $('body').on('click','.badge-primary',function(){
             var id =  $(this).attr("id");
-          console.log(id);
           $('#'+id).remove();
         });
 });

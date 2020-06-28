@@ -1,4 +1,5 @@
 class Portfolio < ApplicationRecord
+  is_impressionable
   # アソシエーション
   belongs_to :user
   belongs_to :category, optional: true
@@ -23,7 +24,6 @@ class Portfolio < ApplicationRecord
   #has_one_attached :body
    
   attachment :image
-  is_impressionable
   #ソート
   def self.sort(selection)
     case selection
