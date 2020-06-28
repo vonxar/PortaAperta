@@ -1,0 +1,140 @@
+@import 'trix/dist/trix';
+@import "~bootstrap/scss/bootstrap";
+
+container{
+  height: 90vh;
+}
+
+h1{
+    // padding: 0.5em 1em;
+    // margin-top: 30px;
+    color: #474747;
+    background: whitesmoke;/*背景色*/
+    border-left: double 7px #4ec4d3;/*左線*/
+    border-right: double 7px #4ec4d3;/*右線*/
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    // width: 100%;
+    // height: 100%;
+    // z-index: 0;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+li{
+   list-style: none;
+}
+ul {
+  list-style: none;
+  li{
+    margin: 10px;
+    a{
+        color: white;
+        padding:10px;
+    }
+  }
+}
+ul > li >a:hover{
+  background-color:gold;
+  text-decoration: none;
+  a{
+    color:#0056b3;
+  }
+}
+
+// rich_text
+trix-editor {
+  min-height: 20em;
+  max-height: 20em;
+  overflow-y: auto;
+  border: 2px solid black;
+}
+.trix-content {
+  .attachment-gallery {
+    > action-text-attachment,
+    > .attachment {
+      flex: 1 0 33%;
+      padding: 0 0.5em;
+      max-width: 33%;
+    }
+
+    &.attachment-gallery--2,
+    &.attachment-gallery--4 {
+      > action-text-attachment,
+      > .attachment {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+    }
+  }
+
+  action-text-attachment {
+    .attachment {
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+  }
+}
+
+.side{
+  i{
+    font-size:25px;
+  }
+  h5{
+    color:black;
+  }
+  ul{
+    margin-left:-50px;
+    a{
+    color:black;
+    }
+  }
+position:fixed;
+left:0px;
+width:160px;
+overflow: auto;
+}
+
+span{
+  a:hover{
+    cursor: pointer;
+  }
+}
+
+.search_a{
+  color:black;
+}
+
+.comment_ajax{
+  margin-top: 30px;
+}
+
+.main_portfolio{
+  margin: 30px 0;
+  img{
+    margin: 0.2% 0 10px 0;
+    border : solid 15px #333 ;
+    width: 99.5%;
+    transition-duration: 0.3s;
+    z-index: 1000;
+  }
+  img:hover{
+   opacity: 0.6;
+   transition-duration: 0.3s;
+  }
+  border:1px solid black;
+}
+.included{
+  margin-left:10px;
+}
+// 新規投稿座標
+#top_post{
+  position:absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}

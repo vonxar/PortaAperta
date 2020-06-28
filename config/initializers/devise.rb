@@ -15,7 +15,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'b27985f4e22c72dee63e396c62aa39f59d871b8fa4143a58b9b205cd43f232edd77f631d0b12d1d55bbbfd18f62ae9ce1be5677e809955017cddb4c189850e3e'
-
+# config.omniauth :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], scope: 'user,public_repo' github_sns_sign_in
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:name]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the

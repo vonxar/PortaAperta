@@ -1,0 +1,35 @@
+<h1>ポートフォリオ詳細</h1>
+  <%= attachment_image_tag @portfolio, :image, size: "500x400",  fallback: "noimage.svg"%>
+<p>タイトル</p>
+<p><%= @portfolio.title %></p><br>
+<p>本文</p>
+<p><%= @portfolio.body %></p>
+<!--いいね-->
+  <div id="like_btn_<%= @portfolio.id %>">
+    <%= render 'likes/like',port: @portfolio %>
+  </div>
+<!--いいねend-->
+
+<!--お気に入り-->
+  <div id="favorite_btn_<%= @portfolio.id %>">
+    <%= render 'favorites/favorite',port: @portfolio %>
+  </div>
+  タグ: 
+  <% @portfolio.tag_list.each do |tag| %>
+  <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
+  <% end %>
+<!--end------------>
+    
+<i class="far fa-eye"></i><%= @page_views %>
+<!-- コメント -->
+<div id="comment_ajax">
+<%= render 'comments/comment',portfolio: @portfolio,comment: @comment %>
+</div>
+<!-- </form> -->
+<h3>コメント一覧</h3>
+<table class="table" id="comments_ajax">
+<%= render 'comments/comments',portfolio: @portfolio %>
+</table>
+
+
+

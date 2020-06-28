@@ -1,0 +1,15 @@
+<!--インクリメンタル検索-->
+<input type=form id="search" placeholder="検索内容を入力してください" style="width: 250px;"/>
+<ul id="result">
+</ul>
+
+<!--ソート機能-->
+<%= render 'select_form', portfolios: @portfolios %>
+
+<!--投稿一覧-->
+<div class="row row-cols-2 ports">
+<%= render partial: 'portfolio_all',collection: @portfolios,as: "port" %>
+</div>
+
+
+
