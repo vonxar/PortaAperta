@@ -16,27 +16,28 @@
        タグ: 
        <% port.tag_list.each do |tag| %>
         <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
-       <% end %>
-       
-      <p><%= port.comments.count %>件コメント</p>
-      
-      <div class="row row-cols-2">
-       <div class="col">
+       <% end %><br>
+      <%= port.comments.count %>件コメント
+      <div class="row">
+       <div class="col-1">
+        <i class="far fa-eye"></i><%= port.impressionist_count %>
+       </div>
+        
       <!--いいね-->
-      <div id="like_btn_<%= port.id %>">
+      <div id="like_btn_<%= port.id %>" class="col-2">
       <%= render 'likes/like',port: port %>
       </div>
       <!--いいねend-->
-      <div id="favorite_btn_<%= port.id %>">
+      
+      <div id="favorite_btn_<%= port.id %>" class="col-3">
        <%= render 'favorites/favorite',port: port %>
       </div>
-      </div>
-      <div class="col">
-      <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning" %>
-      <%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
+      
+      
+      <div class="col-3  offset-3">
+      <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning"%><%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
     </div>
     </div>
     </div>
     </div>
     </div>
-
