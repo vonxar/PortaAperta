@@ -20,7 +20,7 @@
   <% end %>
 <!--end------------>
     
-
+<i class="far fa-eye"></i><%= @page_views %>
 <!-- コメント -->
 <div id="comment_ajax">
 <%= render 'comments/comment',portfolio: @portfolio,comment: @comment %>
@@ -31,5 +31,5 @@
 <%= render 'comments/comments',portfolio: @portfolio %>
 </table>
 
-<%= @page_views %>
+
 

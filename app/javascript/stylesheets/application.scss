@@ -131,3 +131,10 @@ span{
 .included{
   margin-left:10px;
 }
+// 新規投稿座標
+#top_post{
+  position:absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
