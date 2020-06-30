@@ -1,7 +1,7 @@
 <!--サイドバー-->
 <div class="side">
-   <h5>マイページです。</h5>
-   <%= attachment_image_tag current_user, :profile_image, size: "100x100",  fallback: "noimage.svg" ,style: "border-radius: 50%; margin: 20px;"%><br>
+   <h5>マイページ</h5>
+   <%= attachment_image_tag current_user, :profile_image, size: "150x120",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-bottom: 10px;"%><br>
    <div class="container">
      <P><%= current_user.introduction %></p>
       <div class="row">

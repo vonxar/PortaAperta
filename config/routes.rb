@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'homes#top'
    devise_for :users, controllers: {
     registrations: 'users/registrations',
      # omniauth_callbacks: "users/omniauth_callbacks" github_sns_sign _in
@@ -6,7 +7,6 @@ Rails.application.routes.draw do
    devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
-  root 'homes#top'
   resources :users
   resources :portfolios do
    resources :comments,only: %i[create destroy]
