@@ -3,8 +3,22 @@
         <div class="col-sm-12">
           <h3>コメント</h3>
             <%= f.text_area :comment, rows:'4', class: "form-control",placeholder: "コメントをここに" %>
+        <div class="field" id="star">
+        <%= f.label :rate,  "星評価 (※必須)" ,id: "e"%>
+        <%= f.hidden_field :rate, id: :review_star %>
         </div>
     </div>
-    <%= f.submit "送信する", class: "btn btn-primary" %>
+    <%= f.submit "コメントする", class: "btn btn-primary" %>
 <% end %><br>
 
+
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: "<%= asset_path('star-half.png') %>",
+  scoreName: 'comment[rate]',
+  half: true //★の半分の入力を行う
+});
+</script>

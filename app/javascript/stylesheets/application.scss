@@ -5,7 +5,7 @@ container{
   height: 90vh;
 }
 
-h1{
+#portfolio_h1{
     // padding: 0.5em 1em;
     // margin-top: 30px;
     color: #474747;
@@ -54,6 +54,12 @@ trix-editor {
   border: 2px solid black;
 }
 .trix-content {
+  border:1px solid black;
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -137,4 +143,39 @@ span{
   opacity: 0;
   top: 0;
   left: 0;
+}
+
+
+.comment_text {
+    position: relative;
+    margin: 2em 0 2em 40px;
+    padding: 8px 15px;
+    background: #fff0c6;
+    border-radius: 30px;
+}
+.comment_text:before{font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 15px;
+    left: -40px;
+    bottom: 0;
+    color: #fff0c6;
+}
+.comment_text:after{
+    font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 23px;
+    left: -23px;
+    bottom: 0;
+    color: #fff0c6;
+}
+
+.comment_body{
+  overflow-wrap: break-word;
+　　　word-wrap: break-word;
+}
+
+.comment-item{
+  margin:0 20px;
 }
