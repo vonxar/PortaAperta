@@ -3,7 +3,7 @@
      <%= link_to portfolio_path(port.id) do %>
       
       <div class="main_portfolio">
-      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %><h1><%= port.title %></h1> </div>
+      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %><h1 id="portfolio_h1"><%= port.title %></h1> </div>
       <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#portfolio<%=port.id%>" aria-expanded="false" aria-controls="collapseExample">
        本文を表示する
       </button>

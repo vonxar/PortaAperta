@@ -56,8 +56,10 @@ class PortfoliosController < ApplicationController
       selection = params[:portfolio][:keyword]
       @portfolios = Portfolio.sort(selection)
     else
-      @users = User.where('name LIKE(?)', "%#{params[:word]}%") #paramsとして送られてきたword（入力された語句）で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
-      render json: @users
+      # @users = User.where('name LIKE(?)', "%#{params[:word]}%") #paramsとして送られてきたword（入力された語句）で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
+      @portfolios = Portfolio.where('name LIKE(?)', "%#{params[:word]}%")
+      render json: @portfolios
+      # render json: @users
     end
   end
   
