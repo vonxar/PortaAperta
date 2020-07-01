@@ -8,6 +8,16 @@ class Portfolio < ApplicationRecord
   has_many :comments,dependent: :destroy
   
   acts_as_taggable
+  acts_as_ordered_taggable_on :tags
+  
+  def stringify(tag_list)
+    tag_list.inject('') { |memo, tag| memo += (tag + ',') }[0..-1]
+  end
+  
+  #validates
+  validates :title, presence: true
+  validates :body, presence: true
+  #end
   
 	
   # いいね判定

@@ -46,14 +46,14 @@
  
      <%= f.attachment_field :image, placeholder: "画像" %>
        
-     <div class="ield">
+     <div class="field">
       <%= f.label :title %>
-      <%= f.text_field :title, autofocus: true, autocomplete: "title"%>
+      <%= f.text_field :title,maxlength: 30, autofocus: true, autocomplete: "title"%>
      </div>
   
      <div class="field">
-      <%= f.label :body %>
-      <%= f.rich_text_area :body %>
+      <%= f.label '本文' %>
+      <%= f.rich_text_area :body, maxlength: 1000%>
      </div>
      <div><%= f.submit "portfolio登録" ,class: "btn btn-primary",id: "tag_lists"%></div>
     <% end %><br>
@@ -70,6 +70,4 @@
 <div class="row row-cols-2 ports">
  <%= render partial: 'portfolios/portfolio_all',collection: @favorites,as: "port" %>
 </div>
-
-
 

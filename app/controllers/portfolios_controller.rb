@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+  before_action :authenticate_user!
   
   def top
     @portfolios = Portfolio.order("created_at DESC")
@@ -22,7 +23,10 @@ class PortfoliosController < ApplicationController
     if @portfolio.save
     redirect_to  top_path, notice: "投稿しました"
     else
-      render "users/show", alert: '失敗しました'
+      @user_portfolios = Portfolio.where(user_id: current_user.id)
+      @favorites = current_user.favorite_portfolios.includes(:user)
+      flash.now[:alert] = '失敗しました'
+      render "users/show"
     end
   end
   
@@ -36,11 +40,14 @@ class PortfoliosController < ApplicationController
   
   def update
     	 @portfolio = Portfolio.find(params[:id])
+    	 owned_tag_list = [(params[:portfolio][:tag_list])]
+    	 @portfolio.tag_list.add(owned_tag_list)
+    	 @portfolio.save
     if @portfolio.update(portfolio_params)
-    	flash[:notice] ="編集を反映しました。"
-        redirect_to top_path
+        redirect_to top_path, notice: "編集を反映しました。"
     else
     	@user = current_user.id
+    	flash[:alert] = "失敗しました。"
     	render :edit
     end
   end
@@ -57,7 +64,7 @@ class PortfoliosController < ApplicationController
       @portfolios = Portfolio.sort(selection)
     else
       # @users = User.where('name LIKE(?)', "%#{params[:word]}%") #paramsとして送られてきたword（入力された語句）で、Userモデルのnameカラムを検索し、その結果を@usersに代入する
-      @portfolios = Portfolio.where('name LIKE(?)', "%#{params[:word]}%")
+      @portfolios = Portfolio.where('title LIKE(?)', "%#{params[:word]}%")
       render json: @portfolios
       # render json: @users
     end
