@@ -1,6 +1,6 @@
   <% portfolio.comments.each do |comment| %>
      <div id="comment-<%= comment.id %>" class="comment_text">
-        <div><%= attachment_image_tag current_user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
+        <div><%= attachment_image_tag comment.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
         <a href="#" class="link-autdor"><%= comment.user.name %></a></div><br>
         <p class="comment_body"><%= comment.comment %></p>
         <div style="display:flex;" class="justify-content-end">
@@ -12,6 +12,8 @@
        <% end %>
      </div>
      </div>
+     
+     
  <script>
           $('#star-rate-<%= comment.id %>').raty({
             size: 36,

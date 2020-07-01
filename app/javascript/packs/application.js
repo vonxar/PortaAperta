@@ -84,31 +84,45 @@ require("@rails/actiontext")
 });
 //--------end----------
 
+
+
+
+
 //タグ化機能
 $(function() {
-        $('input').on("keydown",function(e){
-        if  (e.keyCode == 188) {
-            var btn = $('#portfolio_tag_list').val();
-        $('.output').append('<span class="badge badge-primary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" ");
-          $("#portfolio_tag_list").val("");
-          return false;
-        } });
-        $('body').on('click','.badge-primary',function(){
-            var id =  $(this).attr("id");
-          $('#'+id).remove();
+        $('input').on("keydown",function(e){ //キーボードでキーが押された時発動
+        if  (e.keyCode == 188 && $('#portfolio_tag_list').val().length > 0) { //キーの　,（カンマ）が押され　かつ　入力が1文字以上されている時
+            var btn = $('#portfolio_tag_list').val(); //入力された情報を　btn　に代入
+        $('.output').append('<span class="badge badge-primary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //タグ入力欄のしたにタグ化したバッジを追加+削除用クラス追加
+          $("#portfolio_tag_list").val(""); //タグ欄を空に
+          return false; //押された　,(カンマ)を返さない。よって、入力欄に,(カンマ)は入らない
+        } else if (e.keyCode == 188) { //入力欄に文字がなく、 ,（カンマ）が押された時
+           return false; // 上記と同じ
+        }
         });
+        $('body').on('click','.badge-primary',function(){ //クリックされたら
+            var id =  $(this).attr("id"); //クリックされた要素のidの中身を　idに代入
+          $('#'+id).remove(); //取得した情報でクリックされた要素を消す
+        });
+        
 });
         
 $(function() {
-  $("body").on('click','#tag_lists',function(){
-var tags = $('.badge-primary').map(function(){
-  return this.id;
-}).get();
- $("#hid").val(tags);
+  $("body").on('click','#tag_lists',function(){ //クリックされたら　idが#tag_listsの要素
+var tags = $('.badge-primary').map(function(){ //クラス.badge-primaryの要素を　tagsに代入
+  return this.id; //上記のidの中身を渡す
+}).get(); //その情報を得て
+ $("#hid").val(tags); //idがhidのvalにtagsを代入
 });
 });
 
+
+
+
 //----------end-----------
+
+
+
 
 // インクリメンタルサーチ
 $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが動くようにする
@@ -129,10 +143,9 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
        if(data.length !== 0){
         $(data).each(function(i, result){ //dataをuserという変数に代入して、以下のことを繰り返し行う(単純なeach文ですね)
         // $('#result').append('<li>' + '<a class="search_a"  href="/users/'+user.id+'">'+ user.name +'</a>'+ '</li>')//resultというidの要素に対して、<li>ユーザーの名前</li>を追加する。
-         $('#result').append('<li>' + '<a class="search_a"  href="/portfolios/'+result.id+'">'+ result.tag_list +'</a>'+ '</li>')
-         console.log(result.tag_list)
+         $('#result').append('<li>' + '<a class="search_a"  href="/portfolios/'+result.id+'">'+ result.title +'</a>'+ '</li>')
        });
-      } else {  $('#result').append('<li>' + "一致するユーザーがありません" + '</li>')
+      } else {  $('#result').append('<li>' + "一致するキーワードがありません" + '</li>')
       }
     });
     } else{
@@ -908,4 +921,10 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
     targetType:   'hint'
   };
 })(jQuery);
+
 // end----------------------
+
+
+
+
+

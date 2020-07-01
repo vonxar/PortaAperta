@@ -74,6 +74,7 @@ gem 'dotenv-rails' #環境変数化
 gem 'actiontext'
 
 gem 'impressionist' #railsでページビューをトラッキング
+gem 'redcarpet' #markdown
 
 #gem 'faraday'
 group :production do
