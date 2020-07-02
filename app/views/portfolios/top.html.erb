@@ -11,5 +11,7 @@
 <%= render partial: 'portfolio_all',collection: @portfolios,as: "port" %>
 </div>
 
-
+<% @tags.each do |tag| %>
+<%= link_to tag, top_path(tag_name: tag), class: "badge badge-primary"  %>
+<% end %>
 

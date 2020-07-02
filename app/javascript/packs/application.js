@@ -35,6 +35,13 @@ global.$ = jQuery;
 require("trix")
 require("@rails/actiontext")
 
+
+// フェードイン
+$(function(){
+    $('body').hide().fadeIn(1500);
+});
+// -------end-----------
+
 //userページのスクロール機能
  $(function(){
         // #で始まるリンクをクリックしたら実行されます
@@ -118,7 +125,22 @@ var tags = $('.badge-primary').map(function(){ //クラス.badge-primaryの要�
 
 
 
-
+   // edit 既存タグ化
+$(function(){
+  var list = $('#portfolio_tag_list').val(); //タグ情報をlistに代入
+if (list.length > 0){
+  $('#portfolio_tag_list').val(""); //タグ欄を空に
+  var count = (list.match( /,/g ) || [] ).length; //取得したタグ情報をの , の数をカウント
+ for (let i = 0; i < count; i++) { //ループ ,の数を超えるまで
+  var first = 0; //0を代入文字の最初を指定するため
+  var here = list.indexOf( ',' ); //頭から , の位置を検索
+  var result = list.substr( first, here ); //substrは文字の（はじめの位置,終わり位置）を取得
+  $('.output').append('<span class="badge badge-primary"id='+result+'>'+result+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //取得した文字をタグ化
+  var list = list.replace(result+',', ''); //最初に取得したタグ情報から、タグ化した文字と+,を消す
+  }
+   $('.output').append('<span class="badge badge-primary"id='+list+'>'+list+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //余った文字をタグ化
+};
+});
 //----------end-----------
 
 
@@ -923,7 +945,6 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 })(jQuery);
 
 // end----------------------
-
 
 
 

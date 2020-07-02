@@ -20,16 +20,16 @@
   <ul>
    <li><a href="#top_post">
      新規投稿</a></li>
-   <li><a href="#2">投稿一覧</a></li>
-   <li><a href="#3">お気に入り</a></li>
-   <li><a href="/users/<%= current_user.id %>/edit" data-turbolinks="false">プロフィール編集</a></li>
+   <li class="nav_item"><a href="#2">投稿一覧</a></li>
+   <li class="nav_item"><a href="#3">お気に入り</a></li>
+   <li class="nav_item"><a href="/users/<%= current_user.id %>/edit" data-turbolinks="false">プロフィール編集</a></li>
   </ul>
 </div>
 
 <p id="top_post" type="button" class="post_btn" data-toggle="collapse" data-target="#Post" aria-expanded="false" aria-controls="collapseExample">
      top</p>
 <!--投稿-->
-<div class="collapse" id="Post">
+<div class="collapse item" id="Post">
   <div class="card card-body">
    <h2>投稿</h2>
     <%= form_for(@portfolio, url:portfolios_path,method: "post") do |f| %>
@@ -62,12 +62,16 @@
 <!------------end------------>
 
 <!--投稿一覧-->
-<div class="row row-cols-2 ports">
+<h2 id="2">投稿一覧</h2>
+<div class="row row-cols-2 ports item">
  <%= render partial: 'portfolios/portfolio_all',collection: @user_portfolios,as: "port" %>
 </div>
 
-<h3 id="3">お気に入り</h3><br>
-<div class="row row-cols-2 ports">
+<h2 id="3">お気に入り</h2><br>
+<div class="row row-cols-2 ports item">
  <%= render partial: 'portfolios/portfolio_all',collection: @favorites,as: "port" %>
 </div>
+
+
+
 

@@ -3,6 +3,7 @@ class PortfoliosController < ApplicationController
   
   def top
     @portfolios = Portfolio.order("created_at DESC")
+    @tags = ActsAsTaggableOn::Tag.all
     if params[:tag_name]
       @portfolios = Portfolio.tagged_with("#{params[:tag_name]}")
     end
