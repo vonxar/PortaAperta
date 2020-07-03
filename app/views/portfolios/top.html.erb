@@ -23,8 +23,11 @@
   <%= render 'select_form', portfolios: @portfolios %>
  </div>
 </div>
+
+
 <!--投稿一覧-->
+<h2>投稿一覧</h2>
 <div class="row row-cols-2 ports">
 <%= render partial: 'portfolio_top',collection: @portfolios,as: "port" %>
+<%= paginate @portfolios %>
 </div>
-

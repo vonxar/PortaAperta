@@ -2,11 +2,16 @@ class PortfoliosController < ApplicationController
   before_action :authenticate_user!
   
   def top
-    @portfolios = Portfolio.order("created_at DESC")
+    @portfolios = Portfolio.order("created_at DESC").page(params[:page]).per(6)
     @tags = ActsAsTaggableOn::Tag.order('taggings_count Desc')
     if params[:tag_name]
       @portfolios = Portfolio.tagged_with("#{params[:tag_name]}")
     end
+  end
+  
+  def index
+   @portfolio =Portfolio.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(1).pluck(:impressionable_id))
+   @portfolios =Portfolio.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(2).offset(1).pluck(:impressionable_id))
   end
   
   def new

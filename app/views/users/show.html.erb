@@ -6,8 +6,8 @@
      <P><%= current_user.introduction %></p>
       <div class="row">
        <div class="col-1"></div>
-       <div class="col-2"><%= @user_portfolios.count %></div>
-       <div class="col-2"><%= @favorites.count %></div>
+       <div class="col-2"><%= current_user.portfolios.count %></div>
+       <div class="col-2"><%= current_user.favorites.count %></div>
   
       <!-- Force next columns to break to new line -->
        <div class="w-100"></div>
@@ -31,16 +31,18 @@
 <!--投稿-->
 <div class="collapse" id="Post">
   <div class="card card-body">
-  <%= render 'portfolios/new', portfolios: @portfolios %>
+  <%= render 'portfolios/new', portfolio: @portfolio %>
 <!------------end------------>
 
 <!--投稿一覧-->
 <div class="row row-cols-2 ports">
  <%= render partial: 'portfolios/portfolio_all',collection: @user_portfolios,as: "port" %>
 </div>
+ <%= paginate @user_portfolios %>
 
 <h3 id="3">お気に入り</h3><br>
 <div class="row row-cols-2 ports">
  <%= render partial: 'portfolios/portfolio_all',collection: @favorites,as: "port" %>
 </div>
+  <%= paginate @favorites %>
 

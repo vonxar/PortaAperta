@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @portfolio = Portfolio.new
-    @user_portfolios = Portfolio.where(user_id: current_user.id)
-    @favorites = current_user.favorite_portfolios.includes(:user)
+    @user_portfolios = Portfolio.where(user_id: current_user.id).page(params[:page]).per(4)
+    @favorites = current_user.favorite_portfolios.includes(:user).page(params[:page]).per(4)
   end
   
   def edit

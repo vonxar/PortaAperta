@@ -1,23 +1,13 @@
-<!--ポートフォリオ一覧-->
+<!--1ランキング-->
+<% port.each do |port| %>
     <div class="col">
-     <%= link_to portfolio_path(port.id) do %>
-      
+    <h2 class="text-right"><u><mark>PV 1位</mark></u></h2>
+     <%= link_to portfolio_path(port) do %>
       <div class="main_portfolio">
-      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg", class: "portfolio_image"%><br><% end %><h1 id="portfolio_h1"><%= port.title %></h1> </div>
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#portfolio<%=port.id%>" aria-expanded="false" aria-controls="collapseExample">
-       本文を表示する
-      </button>
-      <div class="collapse" id="portfolio<%=port.id%>">
-      <div class="card card-body">
-      <%= port.body %>
-      </div>
-      </div><br>
+      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x600",  fallback: "noimage.svg", class: "portfolio_image"%><br><% end %><h1 id="portfolio_h1"><%= port.title %></h1> </div>
      <div class="included">
        タグ: 
-       <% port.tag_list.each do |tag| %>
-        <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
-       <% end %><br>
-      <%= port.comments.count %>件コメント
+       <%= port.comments.count %>件コメント
       <div class="row">
        <div class="col-3">
        <%= link_to user_path(port.user.id) do %>
@@ -46,4 +36,4 @@
     </div>
     </div>
     </div>
-    </div>
+    <% end %>

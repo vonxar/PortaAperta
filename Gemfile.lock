@@ -140,6 +140,9 @@ GEM
     kaminari-activerecord (1.2.1)
       activerecord
       kaminari-core (= 1.2.1)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kaminari-core (1.2.1)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -347,6 +350,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
+  kaminari-bootstrap
   listen (~> 3.2)
   mysql2
   omniauth
