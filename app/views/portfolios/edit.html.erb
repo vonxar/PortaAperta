@@ -6,7 +6,7 @@
   <%= form_for(@portfolio) do |f| %>
   <div class="tag-field">
        <%= f.label :portfolio, "タグ" %>
-       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},class: "form-control" %></div>
+       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},maxlength: 10, class: "form-control" %></div>
        <%= f.hidden_field :tag_list,:value => @portfolio.tag_list.join(','), id: "hid"%>
        </div><br>
        

@@ -19,10 +19,10 @@
 
   <ul>
    <li><a href="#top_post">
-     新規投稿</a></li>
-   <li><a href="#2">投稿一覧</a></li>
-   <li><a href="#3">お気に入り</a></li>
-   <li><a href="/users/<%= current_user.id %>/edit" data-turbolinks="false">プロフィール編集</a></li>
+     <i class="fas fa-plus-circle"></i>新規投稿</a></li>
+   <li><a href="#2"><i class="fas fa-list-alt"></i>投稿一覧</a></li>
+   <li><a href="#3"><i class="fas fa-star" style="color:gold;"></i>お気に入り</a></li>
+   <li><a href="/users/<%= current_user.id %>/edit" data-turbolinks="false"><i class="fas fa-user-edit"></i>ユーザー編集</a></li>
   </ul>
 </div>
 
@@ -31,34 +31,7 @@
 <!--投稿-->
 <div class="collapse" id="Post">
   <div class="card card-body">
-   <h2>投稿</h2>
-    <%= form_for(@portfolio, url:portfolios_path,method: "post") do |f| %>
-  
-     <div class="tag-field">
-      <%= f.label :portfolio, "タグ" %>
-      <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},class: "form-control" %></div>
-      <%= f.hidden_field :tag_list,:value => @portfolio.tag_list.join(','), id: "hid"%>
-     </div>
-  
-     <div class="portfolio-image">
-      <%= attachment_image_tag @portfolio, :image, class: "img-square", fallback: "noimage.svg", size:"300x300" %>
-     </div><br>
- 
-     <%= f.attachment_field :image, placeholder: "画像" %>
-       
-     <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title,maxlength: 30, autofocus: true, autocomplete: "title"%>
-     </div>
-  
-     <div class="field">
-      <%= f.label '本文' %>
-      <%= f.rich_text_area :body, maxlength: 1000%>
-     </div>
-     <div><%= f.submit "portfolio登録" ,class: "btn btn-primary",id: "tag_lists"%></div>
-    <% end %><br>
-  </div>
-</div>
+  <%= render 'portfolios/new', portfolios: @portfolios %>
 <!------------end------------>
 
 <!--投稿一覧-->

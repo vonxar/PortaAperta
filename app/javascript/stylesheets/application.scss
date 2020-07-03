@@ -1,5 +1,36 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
+// @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); //ロゴに
+@font-face {
+	font-family: 'Mamelon';
+	src: url('/assets/Mamelon.otf') format("truetype");
+	font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: 'Pigmo-01';
+	src: url('/assets/Pigmo-01.otf') format("truetype");
+	font-weight: normal;
+    font-style: normal;
+}
+// @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+// @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
+body {
+	font-family: 'Exo 2','Mamelon', sans-serif;
+	 // font-family: 'Noto Sans JP', sans-serif;
+	 //font-family: 'Notable', sans-serif;
+	 //font-family: 'Noto Sans JP', sans-serif;
+	 //font-family: 'Montserrat', sans-serif;
+	 //font-family: 'Exo 2', sans-serif;
+
+}
+
+.logo{
+	  font-family: 'Pigmo-01';
+}
 
 container{
   height: 90vh;
@@ -21,6 +52,9 @@ container{
     // z-index: 0;
 }
 
+.dropdown-item{
+  padding: 0.25rem 0.5rem;
+}
 a:hover{
   text-decoration: none;
 }
