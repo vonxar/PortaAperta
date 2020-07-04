@@ -2,9 +2,9 @@
 <% portfolio = notification.portfolio %>
 
 <div class="user-view clearfix ">
-  <%#= link_to portfolio_path(notification.comment.portfolio_id) do %>
+  <%= link_to user_path(notification.visiter) do %>
     <%= attachment_image_tag visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "my_noimage.jpg", size: "50x50", class:"profile-img-circle" %>
-  <%# end %>
+  <% end %>
   <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
   <br>
   <% if !@comment.nil? %>

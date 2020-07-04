@@ -7,7 +7,6 @@
 <% end %>
 
 <h1>ランキング</h1>
-<%= render '1_ranking',port: @portfolio %>
-<div class="row row-cols-2 ports">
-<%= render 'ranking', pv: @portfolios %>
-</div>
+ <div class="ranking_render">
+  <%= render 'ranking', port: @portfolios ,word: "Pv"%>
+ </div>

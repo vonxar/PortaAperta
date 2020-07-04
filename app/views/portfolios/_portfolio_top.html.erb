@@ -13,7 +13,7 @@
       <div class="row">
        <div class="col-3">
        <%= link_to user_path(port.user.id) do %>
-       <%= attachment_image_tag port.user, :profile_image, size: "50x50", fallback: "noimage.svg", class: "top_myimage"%><br><p class="user_name"><%= port.user.name%></p><% end %>
+       <%= attachment_image_tag port.user, :profile_image,data: {turbolinks: "false"}, size: "50x50", fallback: "noimage.svg", class: "top_myimage"%><br><p class="user_name"><%= port.user.name%></p><% end %>
        </div>
        <div class="col-1 align-self-center">
         <i class="far fa-eye"></i><%= port.impressionist_count %>

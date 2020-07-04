@@ -19,7 +19,7 @@
 
       <%= f.attachment_field :image, placeholder: "画像" %>
 	<%= f.label :title, 'Title' %>
-	<%= f.text_field :title%><br>
+	<%= f.text_field :title,maxlength: 17 %><br>
 	<%= f.label :body, '本文' %>
 	<%= f.rich_text_area :body%><br>
 	<%= f.submit "編集保存" ,class: "btn btn-primary", id: "tag_lists" %>
@@ -32,6 +32,7 @@
    // edit 既存タグ化
 $(function(){
   var list = $('#portfolio_tag_list').val(); //タグ情報をlistに代入
+  if (list.length > 0){
   $('#portfolio_tag_list').val(""); //タグ欄を空に
   var count = (list.match( /,/g ) || [] ).length; //取得したタグ情報をの , の数をカウント
 for (let i = 0; i < count; i++) { //ループ ,の数を超えるまで
@@ -42,5 +43,6 @@ for (let i = 0; i < count; i++) { //ループ ,の数を超えるまで
   var list = list.replace(result+',', ''); //最初に取得したタグ情報から、タグ化した文字と+,を消す
   }
    $('.output').append('<span class="badge badge-primary"id='+list+'>'+list+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //余った文字をタグ化
+  };
 });
 </script>

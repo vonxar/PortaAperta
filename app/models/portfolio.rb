@@ -51,9 +51,20 @@ class Portfolio < ApplicationRecord
     when 'visit'
        return find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(3).pluck(:impressionable_id))
     when 'ranking_likes'
-      return find(Like.group(:portfolio_id).order(Arel.sql('count(portfolio_id) desc')).limit(2).offset(1).pluck(:portfolio_id))
+      return find(Like.group(:portfolio_id).order(Arel.sql('count(portfolio_id) desc')).limit(3).pluck(:portfolio_id))
     when 'ranking_comment'
-      return find(Comment.group(:portfolio_id).order(Arel.sql('count(portfolio_id) desc')).limit(2).offset(1).pluck(:portfolio_id))
+      return find(Comment.group(:portfolio_id).order(Arel.sql('count(portfolio_id) desc')).limit(3).pluck(:portfolio_id))
+    end
+  end
+  
+  def word
+    case word
+    when 'visit'
+      return "PV"
+    when 'ranking_likes'
+      return "いいね"
+    when 'ranking_comment'
+      return "コメント"
     end
   end
   
