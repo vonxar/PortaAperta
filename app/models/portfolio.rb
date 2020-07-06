@@ -6,6 +6,10 @@ class Portfolio < ApplicationRecord
   has_many :likes,dependent: :destroy
   has_many :favorites
   has_many :comments,dependent: :destroy
+
+  has_many :replies, class_name: Comment.to_s, foreign_key: :reply_comment, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
   
   acts_as_taggable
   acts_as_ordered_taggable_on :tags

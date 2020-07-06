@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :portfolios do
-   resources :comments,only: %i[create destroy]
+   resources :comments,only: %i[create destroy] do
+    resources :reply_comments,only: %i[create destroy]
+   end
    resource :likes,only: %i[create destroy]
    resource :favorites,only: %i[create destroy]
    resources :assessments,only: %i[create destroy]
