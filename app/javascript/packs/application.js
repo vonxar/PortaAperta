@@ -35,6 +35,13 @@ global.$ = jQuery;
 require("trix")
 require("@rails/actiontext")
 
+
+// フェードイン
+$(function(){
+    $('body').hide().fadeIn(1500);
+});
+// -------end-----------
+
 //userページのスクロール機能
  $(function(){
         // #で始まるリンクをクリックしたら実行されます
@@ -52,35 +59,6 @@ require("@rails/actiontext")
           return false;
         });
    });
-   
-   
-   
-   document.addEventListener("turbolinks:load",function() {
-  var appear = false;
-  var pagetop = $('#page_top');
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
-      if (appear == false) {
-        appear = true;
-        pagetop.stop().animate({
-          'right': '0px' //右から0pxの位置に
-        }, 300); //0.3秒かけて現れる
-      }
-    } else {
-      if (appear) {
-        appear = false;
-        pagetop.stop().animate({
-          'right': '-50px' //右から-50pxの位置に
-        }, 300); //0.3秒かけて隠れる
-      }
-    }
-  });
-  pagetop.click(function () {
-    $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
-    return false;
-  });
-});
-
 //-----end-----------
    
    
@@ -147,6 +125,22 @@ var tags = $('.badge-primary').map(function(){ //クラス.badge-primaryの要�
 
 
 
+   // edit 既存タグ化
+$(function(){
+  var list = $('#portfolio_tag_list').val(); //タグ情報をlistに代入
+if (list.length > 0){
+  $('#portfolio_tag_list').val(""); //タグ欄を空に
+  var count = (list.match( /,/g ) || [] ).length; //取得したタグ情報をの , の数をカウント
+ for (let i = 0; i < count; i++) { //ループ ,の数を超えるまで
+  var first = 0; //0を代入文字の最初を指定するため
+  var here = list.indexOf( ',' ); //頭から , の位置を検索
+  var result = list.substr( first, here ); //substrは文字の（はじめの位置,終わり位置）を取得
+  $('.output').append('<span class="badge badge-primary"id='+result+'>'+result+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //取得した文字をタグ化
+  var list = list.replace(result+',', ''); //最初に取得したタグ情報から、タグ化した文字と+,を消す
+  }
+   $('.output').append('<span class="badge badge-primary"id='+list+'>'+list+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //余った文字をタグ化
+};
+});
 //----------end-----------
 
 
@@ -951,8 +945,6 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 })(jQuery);
 
 // end----------------------
-
-
 
 
 

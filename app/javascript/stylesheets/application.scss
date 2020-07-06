@@ -1,36 +1,5 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
-// @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); //ロゴに
-@font-face {
-	font-family: 'Mamelon';
-	src: url('/assets/Mamelon.otf') format("truetype");
-	font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-	font-family: 'Pigmo-01';
-	src: url('/assets/Pigmo-01.otf') format("truetype");
-	font-weight: normal;
-    font-style: normal;
-}
-// @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
-// @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
-body {
-	font-family: 'Exo 2','Mamelon', sans-serif;
-	 // font-family: 'Noto Sans JP', sans-serif;
-	 //font-family: 'Notable', sans-serif;
-	 //font-family: 'Noto Sans JP', sans-serif;
-	 //font-family: 'Montserrat', sans-serif;
-	 //font-family: 'Exo 2', sans-serif;
-
-}
-
-.logo{
-	  font-family: 'Pigmo-01';
-}
 
 container{
   height: 90vh;
@@ -52,9 +21,6 @@ container{
     // z-index: 0;
 }
 
-.dropdown-item{
-  padding: 0.25rem 0.5rem;
-}
 a:hover{
   text-decoration: none;
 }
@@ -155,7 +121,7 @@ span{
 
 .main_portfolio{
   margin: 30px 0;
-  .portfolio_image{
+  img{
     margin: 0.2% 0 10px 0;
     border : solid 15px #333 ;
     width: 99.5%;
@@ -179,7 +145,7 @@ span{
   left: 0;
 }
 
-// コメント
+
 .comment_text {
     position: relative;
     margin: 2em 0 2em 40px;
@@ -207,12 +173,13 @@ span{
 
 .comment_body{
   overflow-wrap: break-word;
-  word-wrap: break-word;
+　　　word-wrap: break-word;
 }
 
 .comment-item{
   margin:0 20px;
 }
+
 
 .count{
   background-color: red;
@@ -342,4 +309,5 @@ span{
     background: #cde4ff;
     border-top: solid 5px #5989cf;
     border-bottom: solid 5px #5989cf;
+
 }
