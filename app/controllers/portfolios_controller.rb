@@ -6,7 +6,6 @@ class PortfoliosController < ApplicationController
   def top
     @portfolios = Portfolio.order("created_at DESC").page(params[:page]).per(6)
     @tags = ActsAsTaggableOn::Tag.order('taggings_count Desc')
-
     if params[:tag_name]
       @portfolios = Portfolio.tagged_with("#{params[:tag_name]}").page(params[:page]).per(6)
     end
@@ -22,10 +21,13 @@ class PortfoliosController < ApplicationController
   
   def show
     @portfolio = Portfolio.find(params[:id])
+     #指定のツイートのコメントを列挙
+    @comments = Comment.includes(:user).where(portfolio_id: @portfolio.id).page(params[:page]).per(4)
     @comment = Comment.new
     impressionist(@portfolio, nil, :unique => [:session_hash])
     @page_views = @portfolio.impressionist_count
     
+    @reply_comment = ReplyComment.new
   end
   
   def create
