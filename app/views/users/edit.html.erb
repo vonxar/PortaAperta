@@ -8,7 +8,7 @@
      </div><br>
     <%= f.label :profile_image,'Image' %>
     <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-    <%= f.text_area :introduction ,autofocus: true,class:"form-control", placeholder: "自己紹介" %>
+    <%= f.text_area :introduction ,autofocus: true,class:"form-control",size: "20x20", placeholder: "自己紹介" %>
     <%= f.submit "登録", class:"btn btn-lg  btn-primary" %>
 <% end %>
 

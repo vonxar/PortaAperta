@@ -6,7 +6,7 @@
   <%= form_for(@portfolio) do |f| %>
   <div class="tag-field">
        <%= f.label :portfolio, "タグ" %>
-       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},class: "form-control" %></div>
+       <div class="output"><%= f.text_field :tag_list, value: @portfolio.tag_list.join(','), placeholder: "例) rails,", data: {role: "tagsinput"},maxlength: 10, class: "form-control" %></div>
        <%= f.hidden_field :tag_list,:value => @portfolio.tag_list.join(','), id: "hid"%>
        </div><br>
        
@@ -19,11 +19,31 @@
 
       <%= f.attachment_field :image, placeholder: "画像" %>
 	<%= f.label :title, 'Title' %>
-	<%= f.text_field :title%><br>
+	<%= f.text_field :title,maxlength: 17 %><br>
 	<%= f.label :body, '本文' %>
 	<%= f.rich_text_area :body%><br>
 	<%= f.submit "編集保存" ,class: "btn btn-primary", id: "tag_lists" %>
 	<%= link_to 'Back',user_path(@portfolio.user_id) ,class: "btn btn-dark"%>
 	<% end %>
 </div>
+
 </div>
+
+<script>
+   // edit 既存タグ化
+$(function(){
+  var list = $('#portfolio_tag_list').val(); //タグ情報をlistに代入
+  if (list.length > 0){
+  $('#portfolio_tag_list').val(""); //タグ欄を空に
+  var count = (list.match( /,/g ) || [] ).length; //取得したタグ情報をの , の数をカウント
+for (let i = 0; i < count; i++) { //ループ ,の数を超えるまで
+  var first = 0; //0を代入文字の最初を指定するため
+  var here = list.indexOf( ',' ); //頭から , の位置を検索
+  var result = list.substr( first, here ); //substrは文字の（はじめの位置,終わり位置）を取得
+  $('.output').append('<span class="badge badge-primary"id='+result+'>'+result+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //取得した文字をタグ化
+  var list = list.replace(result+',', ''); //最初に取得したタグ情報から、タグ化した文字と+,を消す
+  }
+   $('.output').append('<span class="badge badge-primary"id='+list+'>'+list+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //余った文字をタグ化
+  };
+});
+</script>

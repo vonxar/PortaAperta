@@ -12,29 +12,34 @@
   <heder>
              <nav>
               <ul class="navbar nav-pills navbar-dark bg-dark justify-content-end sticky-top ">
-               <%=image_tag 'logo.jpg',class: "text-left", style: "width:60px; height:60px; border-radius:30%; margin-right: auto;" %>
+               <span class="text-left logo" style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
+               <%#=image_tag 'logo.jpg',class: "text-left", style: "width:60px; height:60px; border-radius:30%; margin-right: auto;" %>
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
-                <%#= link_to user_path(current_user.id),data: {turbolinks: "false"} do %><%#= attachment_image_tag current_user, :profile_image, size: "75x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%;"%><%# end %>
-                 <!--<%#= link_to user_path(current_user.id), data: {turbolinks: "false"} do %><%#= image_tag "cat.png" ,style: "width:60px; height:60px; top:0; left:0; border-radius: 50%;"%><%# end %>-->
-                  <!--<li class="nav-item dropdown">-->
-                  <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i>マイページ</a>-->
-                  <!--<div class="dropdown-menu">-->
-                  <!-- <a class="dropdown-item" href="/users/<%= current_user.id %>" data-turbolinks="false">マイページ</a>-->
-                  <!--  <a class="dropdown-item" href="#1" data-turbolinks="false">投稿</a>-->
-                  <!--   <a class="dropdown-item" href="#2" data-turbolinks="false">投稿一覧</a>-->
-                  <!--    <a class="dropdown-item" href="#3" data-turbolinks="false">お気に入り</a>-->
-                  <!-- </div></li>-->
-                  <li class="nav-item"><%= link_to about_path do %><i class="fas fa-building"></i>about<% end %></li>
-                   <li><%= link_to top_path do %><i class="fas fa-cookie-bite"></i>一覧<% end %></li>
+                  <li class="nav-item"><%= link_to about_path do %><i class="fas fa-info-circle"></i> about<% end %></li>
+                  <li><%= link_to portfolios_path do %><i class="fas fa-crown"></i> ランキング<% end %></li>
+                   <li><%= link_to top_path do %><i class="far fa-file"></i> 一覧<% end %></li>
+                   
+                   
+                   
+                   <%= link_to notifications_path do%>
+                   <i class="fas fa-bell" style= "color: gold;"></i>
+                   <% if unchecked_notifications.any? %>
+                   <i class="count"><%= unchecked_notifications.count %></i>
+                   <% end %>
+                   <% end %>
+                   
+                   
                  <!--ドロップダウン-->
                   <div class="btn-group">
                     <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= link_to user_path(current_user.id),data: {turbolinks: "false"} do %><%= attachment_image_tag current_user, :profile_image, size: "75x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%;"%><div class="fa fa-caret-down" style="margin-left:10px; color:white;"></div><% end %>
+                    <%= link_to user_path(current_user.id),data: {turbolinks: "false"} do %><%= attachment_image_tag current_user, :profile_image, size: "75x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%;"%><div class="fa fa-caret-down" style="margin-left:15px; color:white;"></div><% end %>
                    </button>
                    <div class="dropdown-menu">
-                     <%= link_to user_path(current_user.id),data: {turbolinks: "false"}, class: "dropdown-item" do %>マイページ<% end %>
-                     <%= link_to top_path, class: "dropdown-item" do %><i class="fas fa-cookie-bite"></i>一覧<% end %>
+                     <%= link_to user_path(current_user.id),data: {turbolinks: "false"}, class: "dropdown-item" do %><i class="fas fa-user"></i>マイページ<% end %>
+                     <%= link_to new_portfolio_path, data: {turbolinks: "false"}, class: "dropdown-item" do %><i class="fas fa-plus-circle"></i>新規投稿<% end %>
+                     <%= link_to edit_user_path(current_user.id),data: {turbolinks: 'false'}, class: "dropdown-item" do %><i class="fas fa-user-edit"></i>ユーザー編集<% end %>
+                     <%= link_to edit_user_registration_path,data: {turbolinks: 'false'}, class: "dropdown-item" do %><i class="fas fa-user-edit"></i>アカウント編集<% end %>
                      <div class="dropdown-divider"></div>
                      <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %>
                    </div><!-- /.dropdown-menu -->
@@ -42,8 +47,8 @@
                 <!------------end---------->
                 <!-- ログインしていない時 -->
                 <% else %>
-                  <li class="nav-item"><%= link_to about_path do %><i class="fas fa-building"></i>about<% end %></li>
-                  <li class="nav-item"><%= link_to new_user_session_path do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
+                  <li class="nav-item"><%= link_to about_path do %><i class="fas fa-info-circle"></i> about<% end %></li>
+                  <li class="nav-item"><%= link_to new_user_registration_path do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
                   <li class="nav-item"><%= link_to new_user_session_path do %><i class="fas fa-sign-in-alt"></i>ログイン<% end %></li>
                   <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></li>
                 <% end %>
@@ -59,6 +64,7 @@
     <%= flash_message(flash[:notice], :info) if flash[:notice] %> <!--青 -->
    <div class="container" style="min-width:80%;">
     <%= yield %>
+    <div id="page_top"><a href="#"></a></div>
    </div>
   </body>
 </html>
