@@ -3,7 +3,11 @@
  <% if i ==  1 %>
   <div class="row row-cols-2">
  <% end %>
+ <% if i ==0 %>
+  <div class="offset-1 col-10 offset-1">
+ <% else %>
     <div class="col">
+ <% end %>
     <h2 class="text-right"><u><mark><%= word %> 第 <%= "#{i+1}" %>位</mark></u></h2>
      <%= link_to portfolio_path(port.id) do %>
       <div class="main_portfolio">

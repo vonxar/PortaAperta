@@ -1,0 +1,2 @@
+$('.<%= @reply %>').remove();
+$('#comments_ajax').html("<%= j(render 'comments/comments', portfolio: @portfolio,comments: @comments,reply_comment: @reply_comment, alert: flash.now[:error] ) %>");
