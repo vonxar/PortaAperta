@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_07_06_135050) do
-
+ActiveRecord::Schema.define(version: 2020_06_30_090656) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -58,7 +56,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_135050) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "rate"
-    t.integer "reply_comment_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -107,14 +104,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_135050) do
     t.string "title"
     t.text "body"
     t.integer "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reply_comments", force: :cascade do |t|
-    t.integer "comment_id"
-    t.text "reply_comment"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
