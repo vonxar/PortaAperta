@@ -1,34 +1,17 @@
-<div class="row">
 <!--インクリメンタル検索-->
- <div class="col-3">
-  タイトル名<input type=form id="search" placeholder="検索内容を入力してください" style="width: 250px;"/>
-  <ul id="result">
-  </ul>
- </div>
+<input type=form id="search" placeholder="検索内容を入力してください" style="width: 250px;"/>
+<ul id="result">
+</ul>
 
- <div class="col-3">
-  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    タグ一覧
-  </button>
-　 <div class="collapse" id="collapseExample">
-    <% @tags.each do |tag| %>
-    <% if tag.taggings_count > 0 %>
-      <span><%= link_to tag, top_path(tag_name: tag.name),class: "badge badge-primary" %><%= tag.taggings_count %></span>
-     <% end %>
-     <% end %>
-   </div>
- </div>
 <!--ソート機能-->
- <div class="offset-3 col-3">
-  <%= render 'select_form', portfolios: @portfolios %>
- </div>
-</div>
-
+<%= render 'select_form', portfolios: @portfolios %>
 
 <!--投稿一覧-->
-<h2>投稿一覧</h2>
 <div class="row row-cols-2 ports">
-<%= render partial: 'portfolio_top',collection: @portfolios,as: "port" %>
-<%= paginate @portfolios %>
+<%= render partial: 'portfolio_all',collection: @portfolios,as: "port" %>
 </div>
+
+<% @tags.each do |tag| %>
+<%= link_to tag, top_path(tag_name: tag), class: "badge badge-primary"  %>
+<% end %>
 

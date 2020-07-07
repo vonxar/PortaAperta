@@ -8,12 +8,6 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   resources :users
-  resources :notifications, only: :index do
-    collection do
-    delete 'destroy_all'
-   end
-  end
-  
   resources :portfolios do
    resources :comments,only: %i[create destroy]
    resource :likes,only: %i[create destroy]
