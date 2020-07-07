@@ -35,6 +35,13 @@ global.$ = jQuery;
 require("trix")
 require("@rails/actiontext")
 
+
+// フェードイン
+$(function(){
+    $('body').hide().fadeIn(1500);
+});
+// -------end-----------
+
 //userページのスクロール機能
  $(function(){
         // #で始まるリンクをクリックしたら実行されます
@@ -951,9 +958,4 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 })(jQuery);
 
 // end----------------------
-
-
-
-
-
 

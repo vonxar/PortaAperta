@@ -1,7 +1,7 @@
-  <% comments.each do |comment| %>
+  <% portfolio.comments.each do |comment| %>
      <div id="comment-<%= comment.id %>" class="comment_text">
-        <%= link_to user_path(comment.user.id) do %><%= attachment_image_tag comment.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
-        <%= comment.user.name %><% end %><br>
+        <div><%= attachment_image_tag comment.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
+        <a href="#" class="link-autdor"><%= comment.user.name %></a></div><br>
         <p class="comment_body"><%= comment.comment %></p>
         <div style="display:flex;" class="justify-content-end">
         <div class="comment-item"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
@@ -11,60 +11,7 @@
          <div  class="comment-item"><%= link_to '削除', portfolio_comment_path(comment.portfolio.id,comment.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger "%></div>
        <% end %>
      </div>
-     
-      <% if comment.reply_comments.count > 1 %>
-        <p>
-          <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#c" aria-expanded="false" aria-controls="collapseExample">
-            <%= comment.reply_comments.count %>件 全てのコメント表示
-          </button>
-        </p>
-        <div class="collapse" id="c">
-      <% comment.reply_comments.each do |reply| %>
-       <div class="reply">
-           <%= link_to user_path(reply.user.id) do %><%= attachment_image_tag reply.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
-           <%= reply.user.name %><% end %><br><%= reply.reply_comment %>
-            <% if comment.user == current_user %>
-             <div  class="comment-item text-right"><%= link_to '削除', portfolio_comment_reply_comment_path(comment.portfolio.id,comment.id,reply.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
-            <% end %>
-        </div>
-       <% end %>
-       </div>
-       <% else %>
-       <% comment.reply_comments.each do |reply| %>
-       <div class="reply">
-           <%= link_to user_path(reply.user.id) do %><%= attachment_image_tag reply.user, :profile_image, size: "40x40",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
-           <%= reply.user.name %><% end %><br><%= reply.reply_comment %>
-            <% if reply.user == current_user %>
-             <div  class="comment-item text-right"><%= link_to '削除', portfolio_comment_reply_comment_path(comment.portfolio.id,comment.id,reply.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
-            <% end %>
-        </div>
-       <% end %>
-       <% end %>
-       
-      
-       
-     
-     <!--,remote: true-->
-        <p class="text-right">
-          <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fas fa-reply">返信</i>
-          </button>
-        </p>
-      <div class="collapse" id="collapseExample">
-           <%= form_for [portfolio,comment,reply_comment] do |f| %>
-           <div class="row justify-content-end">
-             <div class="col-sm-12">
-              <h5>返信</h5>
-                <%= f.text_area :reply_comment, rows:'4', class: "form-control",placeholder: "返信内容をここに" %>
-             </div>
-             <%= f.submit "返信する", class: "btn btn-primary " %>
-             <% end %><br>
-        </div>
-      </div>
-     
-     
-     
-      </div>
+     </div>
      
      
  <script>
@@ -78,9 +25,5 @@
             readOnly: true
         });
 </script> 
-   
-          
-           <% end %>
-           
-           
-           
+    <% end %>
+    
