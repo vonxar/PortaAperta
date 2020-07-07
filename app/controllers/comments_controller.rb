@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    
+    @comments = Comment.includes(:user).where(portfolio_id: params[:portfolio_id]).page(params[:page]).per(4)
+    @reply_comment = ReplyComment.new
     @portfolio = Portfolio.find(params[:portfolio_id])
     @comment = current_user.comments.new(comment_params)
     if @comment.save
