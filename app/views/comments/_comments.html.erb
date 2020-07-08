@@ -58,6 +58,7 @@
             score: '<%= comment.rate %>',
             readOnly: true
         });
+
 </script> 
     <% end %>
-     <%= paginate comments %>
+    <div class="page"><%= render 'portfolios/page', comments: comments%></div>

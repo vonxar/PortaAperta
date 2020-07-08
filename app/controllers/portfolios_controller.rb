@@ -22,7 +22,13 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = Portfolio.find(params[:id])
      #指定のツイートのコメントを列挙
-    @comments = Comment.includes(:user).where(portfolio_id: @portfolio.id).page(params[:page]).per(4)
+    # @comments = Comment.includes(:user).where(portfolio_id: @portfolio.id).page(params[:page]).per(4)
+    @comments = @portfolio.comments.includes(:user).page(params[:page]).per(4)
+    respond_to do |format|
+    format.html
+    format.js
+    end
+    
     @comment = Comment.new
     impressionist(@portfolio, nil, :unique => [:session_hash])
     @page_views = @portfolio.impressionist_count

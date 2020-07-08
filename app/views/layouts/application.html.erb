@@ -7,12 +7,16 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('favicon.ico') %>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
     <script src="https://kit.fontawesome.com/f95b9e0dc0.js" crossorigin="anonymous"></script>
   </head>
   <heder>
              <nav>
               <ul class="navbar nav-pills navbar-dark bg-dark justify-content-end sticky-top ">
-               <span class="text-left logo" style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
+               <span class="text-left logo animate__animated animate__fadeInLeftBig " style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
                <%#=image_tag 'logo.jpg',class: "text-left", style: "width:60px; height:60px; border-radius:30%; margin-right: auto;" %>
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
