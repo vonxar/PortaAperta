@@ -1,2 +1,11 @@
+<% if params[:comment_number] == "0" %>
+$('#comments_ajax').html("<%= j(render 'comments/comments', portfolio: @portfolio,comments: @comments,reply_comment: @reply_comment, alert: flash.now[:error] ) %>");
+$('#comment_comment').val('')
+
+<% elsif  params[:reply] == "1" %>
+$('#comments_ajax').html("<%= j(render 'comments/comments', portfolio: @portfolio,comments: @comments,reply_comment: @reply_comment, alert: flash.now[:error] ) %>");
+$('#reply_comment_reply_comment').val('')
+
+<% end %>
 
 $('#comments_ajax').html("<%= j(render 'comments/comments', portfolio: @portfolio,comments: @comments,reply_comment: @reply_comment, alert: flash.now[:error] ) %>");

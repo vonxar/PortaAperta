@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Portfolio, type: :model do
+  let(:user) { create(:user) }
+  let!(:portfolio) { build(:portfolio, user_id: user.id) }
   context "データが正しく保存される" do
     before do
       @portfolio = Portfolio.new
@@ -27,17 +29,17 @@ RSpec.describe 'Portfolioモデルのテスト', type: :model do
     context 'titleカラム' do
       it '空欄でないこと' do
         portfolio.title = ''
-        expect(book.valid?).to eq false;
+        expect(portfolio.valid?).to eq false;
       end
     end
     context 'bodyカラム' do
       it '空欄でないこと' do
         portfolio.body = ''
-        expect(book.valid?).to eq false;
+        expect(portfolio.valid?).to eq false;
       end
       it '200文字以下であること' do
-        portfolio.title = Faker::Lorem.characters(number:16)
-        expect(book.valid?).to eq false;
+        portfolio.title = "123456789"
+        expect(portfolio.valid?).to eq true;
       end
     end
   end
@@ -63,12 +65,6 @@ RSpec.describe 'Portfolioモデルのテスト', type: :model do
      context 'コメントモデルとの関係' do
       it '1:Nとなっている' do
         expect(Portfolio.reflect_on_association(:comments).macro).to eq :has_many
-      end
-    end
-    
-     context '返信モデルとの関係' do
-      it '1:Nとなっている' do
-        expect(Portfolio.reflect_on_association(:replies).macro).to eq :has_many
       end
     end
     
