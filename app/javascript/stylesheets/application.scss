@@ -1,11 +1,36 @@
 @import 'trix/dist/trix';
 @import "~bootstrap/scss/bootstrap";
+// @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); //ロゴに
+@font-face {
+	font-family: 'Mamelon';
+	src: url('/assets/Mamelon.otf') format("truetype");
+	font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+	font-family: 'Pigmo-01';
+	src: url('/assets/Pigmo-01.otf') format("truetype");
+	font-weight: normal;
+  font-style: normal;
+}
+// @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+// @import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
+body {
+	font-family: 'Exo 2','Mamelon', sans-serif;
+}
+
+.logo{
+	  font-family: 'Pigmo-01';
+}
 
 container{
   height: 90vh;
 }
 
-h1{
+#portfolio_h1{ //title
     // padding: 0.5em 1em;
     // margin-top: 30px;
     color: #474747;
@@ -16,11 +41,11 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
-    // width: 100%;
-    // height: 100%;
-    // z-index: 0;
 }
 
+.dropdown-item{
+  padding: 0.25rem 0.5rem;
+}
 a:hover{
   text-decoration: none;
 }
@@ -54,6 +79,12 @@ trix-editor {
   border: 2px solid black;
 }
 .trix-content {
+  border:1px solid black;
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -79,7 +110,8 @@ trix-editor {
     }
   }
 }
-
+//-------------------------------------
+// マイページのサイドバー
 .side{
   i{
     font-size:25px;
@@ -108,14 +140,14 @@ span{
 .search_a{
   color:black;
 }
-
+// コメント
 .comment_ajax{
   margin-top: 30px;
 }
-
+// ポートフォリオ一覧
 .main_portfolio{
   margin: 30px 0;
-  img{
+  .portfolio_image{
     margin: 0.2% 0 10px 0;
     border : solid 15px #333 ;
     width: 99.5%;
@@ -137,4 +169,170 @@ span{
   opacity: 0;
   top: 0;
   left: 0;
+}
+
+// コメント
+.comment_text {
+    position: relative;
+    margin: 2em 0 2em 40px;
+    padding: 8px 15px;
+    background: #fff0c6;
+    border-radius: 30px;
+}
+.comment_text:before{font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 15px;
+    left: -40px;
+    bottom: 0;
+    color: #fff0c6;
+}
+.comment_text:after{
+    font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 23px;
+    left: -23px;
+    bottom: 0;
+    color: #fff0c6;
+}
+
+.comment_body{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.comment-item{
+  margin:0 20px;
+}
+
+.count{
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 25%;
+  color: white;
+}
+
+
+
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+.top_myimage{
+   border-radius: 50%;
+   border:3px solid green;
+}
+
+.user_name{
+  color:green;
+}
+
+// 画像
+.main_portfolio {
+    // アニメーション設定
+    animation-name: fade-in;
+    animation-duration: 1s; //アニメーション時間
+    animation-timing-function: ease-out; //アニメーションさせるイージング
+    animation-delay: 0s; //アニメーション開始させる時間
+    animation-iteration-count: 1; //繰り返し回数
+    animation-direction: normal; //往復処理をするかどうか
+    animation-fill-mode: forwards; //アニメーション後のスタイルをどうするか
+ }
+  // アニメーション
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -20px, 0);
+    }
+    50% {
+      padding: 50px;
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+// 自己紹介  
+.user_introduction{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+.user_introduction:before, .user_introduction:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.user_introduction:before {left: 10px;}
+.user_introduction:after {right: 10px;}
+.user_introduction p {
+    margin: 0; 
+    padding: 0;
+}
+
+// topにスクロールする
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: -50px;
+  bottom: 50px;
+  background: green;
+  opacity: 0.6;
+  border-radius: 50%;
+}
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+#page_top a::before{
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f102';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+
+// 返信
+.reply{
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;
+    border-top: solid 5px #5989cf;
+    border-bottom: solid 5px #5989cf;
 }

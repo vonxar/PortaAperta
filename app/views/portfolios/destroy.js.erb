@@ -1,0 +1,7 @@
+<% if params[:comment_destroy] == "2" %>
+ $('#comment-<%= @comment %>').remove();
+
+<% elsif params[:reply_destroy] == "3" %>
+ $('.<%= @reply %>').remove();
+ $('#comments_ajax').html("<%= j(render 'comments/comments', portfolio: @portfolio,comments: @comments,reply_comment: @reply_comment, alert: flash.now[:error] ) %>");
+<% end %>

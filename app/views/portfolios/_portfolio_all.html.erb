@@ -1,43 +1,47 @@
 <!--ポートフォリオ一覧-->
-    <div class="col">
-     <%= link_to portfolio_path(port.id) do %>
-      
-      <div class="main_portfolio">
-      <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg"%><br><% end %><h1><%= port.title %></h1> </div>
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#portfolio<%=port.id%>" aria-expanded="false" aria-controls="collapseExample">
+<div class="col">
+  <%= link_to portfolio_path(port.id) do %>
+   <div class="main_portfolio">
+    <div class="text-center"><%= attachment_image_tag port, :image, size: "500x400",  fallback: "noimage.svg", class: "portfolio_image"%><br><% end %><h1 id="portfolio_h1"><%= port.title %></h1> </div>
+     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#portfolio<%=port.id%>" aria-expanded="false" aria-controls="collapseExample">
        本文を表示する
-      </button>
+     </button>
       <div class="collapse" id="portfolio<%=port.id%>">
-      <div class="card card-body">
-      <%= port.body %>
-      </div>
-      </div><br>
-     <div class="included">
-       タグ: 
-       <% port.tag_list.each do |tag| %>
-        <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
-       <% end %><br>
-      <%= port.comments.count %>件コメント
-      <div class="row">
-       <div class="col-1">
-        <i class="far fa-eye"></i><%= port.impressionist_count %>
+       <div class="card card-body">
+        <%= port.body %>
        </div>
+      </div><br>
+       <div class="included">
+         タグ: 
+        <% port.tag_list.each do |tag| %>
+          <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
+        <% end %><br>
+         <%= port.comments.count %>件コメント
+          <div class="row">
+           <div class="col-3">
+            <%= link_to user_path(port.user.id) do %>
+            <%= attachment_image_tag port.user, :profile_image,data: {turbolinks: "false"}, size: "50x50", fallback: "noimage.svg", class: "top_myimage"%><br><p class="user_name"><%= port.user.name%></p><% end %>
+           </div>
+            <div class="col-1 align-self-center">
+             <i class="far fa-eye"></i><%= port.impressionist_count %>
+            </div>
         
-      <!--いいね-->
-      <div id="like_btn_<%= port.id %>" class="col-2">
-      <%= render 'likes/like',port: port %>
-      </div>
-      <!--いいねend-->
-      
-      <div id="favorite_btn_<%= port.id %>" class="col-3">
-       <%= render 'favorites/favorite',port: port %>
-      </div>
-      
-      
-      <div class="col-3  offset-3">
-      <%= link_to '編集', edit_portfolio_path(port.id), class: "btn btn-warning"%><%= link_to '(仮)削除', portfolio_path(port.id), method: :delete, class: "btn btn-danger" %>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+             <!--いいね-->
+              <div id="like_btn_<%= port.id %>" class="col-2 align-self-center">
+               <%= render 'likes/like',port: port %>
+              </div>
+            <!--いいねend-->
+              <div id="favorite_btn_<%= port.id %>" class="col-3 align-self-center">
+               <%= render 'favorites/favorite',port: port %>
+              </div>
+            
+              <div class="col-3 align-self-end">
+                <% if port.user == current_user %>
+                 <%= link_to '編集', edit_portfolio_path(port.id), data: {turbolinks: "false"}, class: "btn btn-warning"%><%= link_to '(仮)削除', portfolio_path(port.id), data: {turbolinks: "false"}, method: :delete, class: "btn btn-danger" %>
+                <% end %>
+                <div class= "text-right"><%= port.created_at.strftime('%Y/%m/%d') %></div>
+              </div>
+          </div>
+       </div>
+   </div>
+</div>

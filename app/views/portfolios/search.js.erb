@@ -1,2 +1,6 @@
+<% if @path == true %>
 $('.ports').html("<%= j(render partial: 'portfolios/portfolio_all', collection: @portfolios,as: "port" ) %>");
+<% else %>
+$('.ranking_render').html("<%= j(render 'ranking',port: @portfolios,word: @word ) %>");
+<% end %>
 <!--ポートフォリオ一覧render　並び替え-->
