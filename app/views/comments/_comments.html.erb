@@ -1,63 +1,62 @@
  <%= flash_message(flash[:error], :danger) if flash[:error] %>
   <% comments.each do |comment| %>
-    <div id="comment-<%= comment.id %>" class="comment_text">
-        <%= link_to user_path(comment.user.id) do %><%= attachment_image_tag comment.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
-        <%= comment.user.name %><% end %><br>
-        <p class="comment_body"><%= comment.comment %></p>
-        <div style="display:flex;" class="justify-content-end">
-        <div class="comment-item"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
-        <h6  class="comment-item">評価：<%= comment.rate %>点</h6>
-        <div id="star-rate-<%= comment.id %>"  class="comment-item"></div>
+   <div id="comment-<%= comment.id %>" class="comment_text">
+    <%= link_to user_path(comment.user.id) do %><%= attachment_image_tag comment.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
+    <%= comment.user.name %><% end %><br>
+    <p class="comment_body"><%= comment.comment %></p>
+     <div style="display:flex;" class="justify-content-end">
+      <div class="comment-item"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
+       <h6  class="comment-item">評価：<%= comment.rate %>点</h6>
+       <div id="star-rate-<%= comment.id %>"  class="comment-item"></div>
        <% if comment.user == current_user %>
-         <div  class="comment-item"><%= link_to '削除', portfolio_comment_path(comment.portfolio.id,comment.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger "%></div>
+         <div  class="comment-item"><%= link_to '削除', portfolio_path(comment.portfolio.id,comment_destroy: 2,comment_id: comment.id),method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger "%></div>
        <% end %>
      </div>
      
       <% if comment.reply_comments.count > 1 %>
-        <p>
-          <button type="button" class="btn btn-secondary <%= comment.id %>" data-toggle="collapse" data-target="#comment_reply<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
-            <%= comment.reply_comments.count %>件 全てのコメント表示
-          </button>
-        </p>
+       <p>
+        <button type="button" class="btn btn-secondary <%= comment.id %>" data-toggle="collapse" data-target="#comment_reply<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+          <%= comment.reply_comments.count %>件 全てのコメント表示
+        </button>
+       </p>
         <div class="collapse" id="comment_reply<%= comment.id %>">
-      <% comment.reply_comments.each do |reply| %>
-       <div class="reply <%= reply.id %>">
-           <%= link_to user_path(reply.user.id) do %><%= attachment_image_tag reply.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
-           <%= reply.user.name %><% end %><br><%= reply.reply_comment %>
+        <% comment.reply_comments.each do |reply| %>
+          <div class="reply <%= reply.id %>">
+            <%= link_to user_path(reply.user.id) do %><%= attachment_image_tag reply.user, :profile_image, size: "60x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
+            <%= reply.user.name %><% end %><br><%= reply.reply_comment %>
             <% if reply.user == current_user %>
-             <div  class="comment-item text-right"><%= link_to '削除', portfolio_comment_reply_comment_path(comment.portfolio.id,comment.id,reply.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
+               <div  class="comment-item text-right"><%= link_to '削除', portfolio_path(comment.portfolio.id, reply_destroy: 3, reply_comment_id: reply.id, comment_id: comment.id, portfolio_id: comment.portfolio_id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
             <% end %>
-        </div>
-       <% end %>
-       </div>
-       <% else %>
+          </div>
+      <% end %>
+         </div>
+      <% else %>
        <% comment.reply_comments.each do |reply| %>
-       <div class="reply <%= reply.id %>">
+        <div class="reply <%= reply.id %>">
            <%= link_to user_path(reply.user.id) do %><%= attachment_image_tag reply.user, :profile_image, size: "40x40",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-right: 20px;"%>
            <%= reply.user.name %><% end %><br><%= reply.reply_comment %>
-            <% if reply.user == current_user %>
-             <div  class="comment-item text-right"><%= link_to '削除', portfolio_comment_reply_comment_path(comment.portfolio.id,comment.id,reply.id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
-            <% end %>
+           <% if reply.user == current_user %>
+             <div  class="comment-item text-right"><%= link_to '削除', portfolio_path(comment.portfolio.id, reply_destroy: 3, reply_comment_id: reply.id, comment_id: comment.id, portfolio_id: comment.portfolio_id), method: :delete,remote: true, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger btn-sm"%></div>
+           <% end %>
         </div>
        <% end %>
-       <% end %>
+      <% end %>
        
        <!--返信コメント-->
         <%= render 'reply_comments/reply_comment', portfolio: portfolio, comment: comment, reply_comment: reply_comment %>
-       
-    </div>
+   </div>
      
      
- <script>
-          $('#star-rate-<%= comment.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            score: '<%= comment.rate %>',
-            readOnly: true
-        });
-</script> 
-    <% end %>
-     <%= paginate comments %>
+    <script>
+      $('#star-rate-<%= comment.id %>').raty({
+       size: 36,
+       starOff:  '<%= asset_path('star-off.png') %>',
+       starOn : '<%= asset_path('star-on.png') %>',
+       starHalf: '<%= asset_path('star-half.png') %>',
+       half: true,
+       score: '<%= comment.rate %>',
+       readOnly: true
+      });
+    </script> 
+  <% end %>
+   <div class="page"><%= render 'portfolios/page', comments: comments%></div>

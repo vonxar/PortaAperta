@@ -7,44 +7,43 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('favicon.ico') %>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
     <script src="https://kit.fontawesome.com/f95b9e0dc0.js" crossorigin="anonymous"></script>
   </head>
   <heder>
-             <nav>
+            <nav>
               <ul class="navbar nav-pills navbar-dark bg-dark justify-content-end sticky-top ">
-               <span class="text-left logo" style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
+               <span class="text-left logo animate__animated animate__fadeInLeftBig " style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
                <%#=image_tag 'logo.jpg',class: "text-left", style: "width:60px; height:60px; border-radius:30%; margin-right: auto;" %>
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
                   <li class="nav-item"><%= link_to about_path do %><i class="fas fa-info-circle"></i> about<% end %></li>
                   <li><%= link_to portfolios_path do %><i class="fas fa-crown"></i> ランキング<% end %></li>
-                   <li><%= link_to top_path do %><i class="far fa-file"></i> 一覧<% end %></li>
-                   
-                   
-                   
-                   <%= link_to notifications_path do%>
-                   <i class="fas fa-bell" style= "color: gold;"></i>
-                   <% if unchecked_notifications.any? %>
-                   <i class="count"><%= unchecked_notifications.count %></i>
-                   <% end %>
-                   <% end %>
-                   
-                   
+                  <li><%= link_to top_path do %><i class="far fa-file"></i> 一覧<% end %></li>
+                  <%= link_to notifications_path do%>
+                     <i class="fas fa-bell" style= "color: gold;"></i>
+                     <% if unchecked_notifications.any? %>
+                       <i class="count"><%= unchecked_notifications.count %></i>
+                     <% end %>
+                  <% end %>
                  <!--ドロップダウン-->
                   <div class="btn-group">
-                    <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= link_to user_path(current_user.id),data: {turbolinks: "false"} do %><%= attachment_image_tag current_user, :profile_image, size: "75x60",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%;"%><div class="fa fa-caret-down" style="margin-left:15px; color:white;"></div><% end %>
                    </button>
-                   <div class="dropdown-menu">
+                    <div class="dropdown-menu">
                      <%= link_to user_path(current_user.id),data: {turbolinks: "false"}, class: "dropdown-item" do %><i class="fas fa-user"></i>マイページ<% end %>
                      <%= link_to new_portfolio_path, data: {turbolinks: "false"}, class: "dropdown-item" do %><i class="fas fa-plus-circle"></i>新規投稿<% end %>
                      <%= link_to edit_user_path(current_user.id),data: {turbolinks: 'false'}, class: "dropdown-item" do %><i class="fas fa-user-edit"></i>ユーザー編集<% end %>
                      <%= link_to edit_user_registration_path,data: {turbolinks: 'false'}, class: "dropdown-item" do %><i class="fas fa-user-edit"></i>アカウント編集<% end %>
                      <div class="dropdown-divider"></div>
                      <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %>
-                   </div><!-- /.dropdown-menu -->
+                    </div><!-- /.dropdown-menu -->
                   </div><!-- /.btn-group -->
-                <!------------end---------->
+                   <!------------end---------->
                 <!-- ログインしていない時 -->
                 <% else %>
                   <li class="nav-item"><%= link_to about_path do %><i class="fas fa-info-circle"></i> about<% end %></li>
@@ -57,14 +56,14 @@
            
   </heder>
 
-  <body>
-    <%= flash_message(flash[:success], :success) if flash[:success] %> <!--緑 flash messge application_helperに記述-->
-    <%= flash_message(flash[:error], :danger) if flash[:error] %> <!-- 赤 -->
-    <%= flash_message(flash[:alert], :warning) if flash[:alert] %> <!--黄-->
-    <%= flash_message(flash[:notice], :info) if flash[:notice] %> <!--青 -->
-   <div class="container" style="min-width:80%;">
-    <%= yield %>
-    <div id="page_top"><a href="#"></a></div>
-   </div>
-  </body>
+      <body>
+       <%= flash_message(flash[:success], :success) if flash[:success] %> <!--緑 flash messge application_helperに記述-->
+       <%= flash_message(flash[:error], :danger) if flash[:error] %> <!-- 赤 -->
+       <%= flash_message(flash[:alert], :warning) if flash[:alert] %> <!--黄-->
+       <%= flash_message(flash[:notice], :info) if flash[:notice] %> <!--青 -->
+       <div class="container" style="min-width:80%;">
+         <%= yield %>
+         <div id="page_top"><a href="#"></a></div>
+       </div>
+      </body>
 </html>

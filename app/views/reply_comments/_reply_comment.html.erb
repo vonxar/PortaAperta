@@ -1,17 +1,42 @@
  
-        <p class="text-right">
-          <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#reply<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fas fa-reply">返信</i>
-          </button>
-        </p>
-      <div class="collapse" id="reply<%= comment.id %>">
-           <%= form_for [portfolio,comment,reply_comment],remote: true do |f| %>
-           <div class="row justify-content-end">
-             <div class="col-sm-12">
-              <h5>返信</h5>
-                <%= f.text_area :reply_comment, rows:'4', class: "form-control",placeholder: "返信内容をここに" %>
-             </div>
-             <%= f.submit "返信する", class: "btn btn-primary " %>
-             <% end %><br>
-        </div>
+      <!--  <p class="text-right">-->
+      <!--    <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#reply<%#= comment.id %>" aria-expanded="false" aria-controls="collapseExample">-->
+      <!--      <i class="fas fa-reply">返信</i>-->
+      <!--    </button>-->
+      <!--  </p>-->
+      <!--<div class="collapse" id="reply<%#= comment.id %>">-->
+      <!--     <%# form_for [portfolio,comment,reply_comment],remote: true do |f| %>-->
+      <!--     <div class="row justify-content-end">-->
+      <!--       <div class="col-sm-12">-->
+      <!--        <h5>返信</h5>-->
+      <!--          <%#= f.text_area :reply_comment, rows:'4', class: "form-control",placeholder: "返信内容をここに" %>-->
+      <!--       </div>-->
+      <!--       <%#= f.submit "返信する", class: "btn btn-primary " %>-->
+      <!--       <%#= f.hidden_field :reply ,:value => 1 %>-->
+      <!--       <%# end %><br>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
+      
+      
+      
+       
+<p class="text-right">
+  <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#reply<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fas fa-reply">返信</i>
+  </button>
+</p>
+  <div class="collapse" id="reply<%= comment.id %>">
+    <%= form_for [portfolio,comment,reply_comment],url:portfolio_path(portfolio.id), remote: true do |f| %>
+     <div class="row justify-content-end">
+      <div class="col-sm-12">
+        <h5>返信</h5>
+        <%= f.text_area :reply_comment, rows:'4', class: "form-control",placeholder: "返信内容をここに" %>
       </div>
+        <%= f.submit "返信する", class: "btn btn-primary " %>
+        <%= hidden_field_tag :reply, 1 %>
+        <%= hidden_field_tag :comment_id, comment.id %>
+        <%= hidden_field_tag :portfolio_id, comment.portfolio_id %>
+    <% end %><br>
+     </div>
+  </div>

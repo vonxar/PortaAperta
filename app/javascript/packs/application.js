@@ -26,58 +26,52 @@ import * as Trix from "trix";
 import '../stylesheets/application'
 import "bootstrap";
 global.$ = jQuery;
-
-// $(function(){
-// $('.container').mouseover(function(){
-//         $('.container').css({'display': 'none'});
-//     });
-// });
 require("trix")
 require("@rails/actiontext")
 
 //userページのスクロール機能
  $(function(){
-        // #で始まるリンクをクリックしたら実行されます
-        $('a[href^="#"]').click(function() {
-         if ($(this).attr("href") == '#top_post') {
-           $('.post_btn').trigger('click');
-         };
-          // スクロールの速度
-          var speed = 400; // ミリ秒で記述
-          var href= $(this).attr("href");
-          var target = $(href == "#" || href == "" ? 'html' : href);
-          var position = target.offset().top;
-          $('body,html').animate({scrollTop:position}, speed, 'swing');
-          
-          return false;
-        });
-   });
+    // #で始まるリンクをクリックしたら実行されます
+    $('a[href^="#"]').click(function() {
+     if ($(this).attr("href") == '#top_post') {
+       $('.post_btn').trigger('click');
+     };
+      // スクロールの速度
+      var speed = 400; // ミリ秒で記述
+      var href= $(this).attr("href");
+      var target = $(href == "#" || href == "" ? 'html' : href);
+      var position = target.offset().top;
+      $('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+    });
+ });
    
    
    
-   document.addEventListener("turbolinks:load",function() {
+document.addEventListener("turbolinks:load",function() {
   var appear = false;
   var pagetop = $('#page_top');
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
-      if (appear == false) {
-        appear = true;
-        pagetop.stop().animate({
-          'right': '0px' //右から0pxの位置に
-        }, 300); //0.3秒かけて現れる
-      }
-    } else {
-      if (appear) {
+   if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
+     if (appear == false) {
+       appear = true;
+       pagetop.stop().animate({
+       'right': '0px' //右から0pxの位置に
+       }, 300); //0.3秒かけて現れる
+     }
+   } else {
+     if (appear) {
         appear = false;
         pagetop.stop().animate({
-          'right': '-50px' //右から-50pxの位置に
+        'right': '-50px' //右から-50pxの位置に
         }, 300); //0.3秒かけて隠れる
-      }
-    }
+     }
+   }
   });
+  
   pagetop.click(function () {
-    $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
-    return false;
+  $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
+  return false;
   });
 });
 
@@ -86,30 +80,30 @@ require("@rails/actiontext")
    
 //画像プレビュー
 // portfolio
-   $(function(){
-    // inputのidから情報の取得
-     $('#portfolio_image').on('change', function (e) {
-// ここから既存の画像のurlの取得
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $(".attachment.portfolio.image").attr('src', e.target.result);
-    }
-// ここまで
-    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
-});
+$(function(){
+  // inputのidから情報の取得
+  $('#portfolio_image').on('change', function (e) {
+   // ここから既存の画像のurlの取得
+   var reader = new FileReader();
+   reader.onload = function (e) {
+   $(".attachment.portfolio.image").attr('src', e.target.result);
+   }
+   // ここまで
+   reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+  });
 });
   // user
-   $(function(){
-    // inputのidから情報の取得
-     $('#user_profile_image').on('change', function (e) {
-// ここから既存の画像のurlの取得
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $(".attachment.user.profile_image").attr('src', e.target.result);
-    }
-// ここまで
-    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
-});
+$(function(){
+  // inputのidから情報の取得
+  $('#user_profile_image').on('change', function (e) {
+  // ここから既存の画像のurlの取得
+   var reader = new FileReader();
+   reader.onload = function (e) {
+   $(".attachment.user.profile_image").attr('src', e.target.result);
+   }
+   // ここまで
+   reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+  });
 });
 //--------end----------
 
@@ -119,34 +113,31 @@ require("@rails/actiontext")
 
 //タグ化機能
 $(function() {
-        $('input').on("keydown",function(e){ //キーボードでキーが押された時発動
-        if  (e.keyCode == 188 && $('#portfolio_tag_list').val().length > 0) { //キーの　,（カンマ）が押され　かつ　入力が1文字以上されている時
-            var btn = $('#portfolio_tag_list').val(); //入力された情報を　btn　に代入
+    $('input').on("keydown",function(e){ //キーボードでキーが押された時発動
+    if  (e.keyCode == 188 && $('#portfolio_tag_list').val().length > 0) { //キーの　,（カンマ）が押され　かつ　入力が1文字以上されている時
+        var btn = $('#portfolio_tag_list').val(); //入力された情報を　btn　に代入
         $('.output').append('<span class="badge badge-primary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //タグ入力欄のしたにタグ化したバッジを追加+削除用クラス追加
-          $("#portfolio_tag_list").val(""); //タグ欄を空に
-          return false; //押された　,(カンマ)を返さない。よって、入力欄に,(カンマ)は入らない
-        } else if (e.keyCode == 188) { //入力欄に文字がなく、 ,（カンマ）が押された時
-           return false; // 上記と同じ
+        $("#portfolio_tag_list").val(""); //タグ欄を空に
+        return false; //押された　,(カンマ)を返さない。よって、入力欄に,(カンマ)は入らない
+      } else if (e.keyCode == 188) { //入力欄に文字がなく、 ,（カンマ）が押された時
+         return false; // 上記と同じ
         }
-        });
-        $('body').on('click','.badge-primary',function(){ //クリックされたら
-            var id =  $(this).attr("id"); //クリックされた要素のidの中身を　idに代入
-          $('#'+id).remove(); //取得した情報でクリックされた要素を消す
-        });
+    });
+      $('body').on('click','.badge-primary',function(){ //クリックされたら
+       var id =  $(this).attr("id"); //クリックされた要素のidの中身を　idに代入
+       $('#'+id).remove(); //取得した情報でクリックされた要素を消す
+      });
         
 });
         
 $(function() {
   $("body").on('click','#tag_lists',function(){ //クリックされたら　idが#tag_listsの要素
-var tags = $('.badge-primary').map(function(){ //クラス.badge-primaryの要素を　tagsに代入
-  return this.id; //上記のidの中身を渡す
-}).get(); //その情報を得て
- $("#hid").val(tags); //idがhidのvalにtagsを代入
+    var tags = $('.badge-primary').map(function(){ //クラス.badge-primaryの要素を　tagsに代入
+    return this.id; //上記のidの中身を渡す
+    }).get(); //その情報を得て
+    $("#hid").val(tags); //idがhidのvalにtagsを代入
+  });
 });
-});
-
-
-
 //----------end-----------
 
 
@@ -157,28 +148,28 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
   $(document).on('keyup', '#search', function(e){ //このアプリケーション(document)の、formというid('#form')で、キーボードが押され指が離れた瞬間(.on('keyup'...))、eという引数を取って以下のことをしなさい(function(e))
     e.preventDefault(); //キャンセル可能なイベントをキャンセル
     var input = $.trim($(this).val()); //この要素に入力された語句を取得し($(this).val())、前後の不要な空白を取り除いた($.trim(...);)上でinputという変数に(var input =)代入
-    if (input.length !== 0){
-    $.ajax({ //ajax通信で以下のことを行います
-      url: '/portfolios/search', //urlを指定
-      type: 'GET', //メソッドを指定
-      data: ('word=' + input), //コントローラーに渡すデータを'word=input(入力された文字のことですね)'にするように指定
-      processData: false, //おまじない
-      contentType: false, //おまじない
-      dataType: 'json' //データ形式を指定
-    })
-      .done(function(data){//データを受け取ることに成功したら、dataを引数に取って以下のことする(dataには@usersが入っている状態ですね)
-      $('#result').find('li').remove();  //idがresultの子要素のliを削除する
-       if(data.length !== 0){
-        $(data).each(function(i, result){ //dataをuserという変数に代入して、以下のことを繰り返し行う(単純なeach文ですね)
-        // $('#result').append('<li>' + '<a class="search_a"  href="/users/'+user.id+'">'+ user.name +'</a>'+ '</li>')//resultというidの要素に対して、<li>ユーザーの名前</li>を追加する。
-         $('#result').append('<li>' + '<a class="search_a"  href="/portfolios/'+result.id+'">'+ result.title +'</a>'+ '</li>')
-       });
-      } else {  $('#result').append('<li>' + "一致するキーワードがありません" + '</li>')
-      }
-    });
-    } else{
-    $('#result').find('li').remove();
-    }
+   if (input.length !== 0){
+     $.ajax({ //ajax通信で以下のことを行います
+       url: '/portfolios/search', //urlを指定
+       type: 'GET', //メソッドを指定
+       data: ('word=' + input), //コントローラーに渡すデータを'word=input(入力された文字のことですね)'にするように指定
+       processData: false, //おまじない
+       contentType: false, //おまじない
+       dataType: 'json' //データ形式を指定
+     })
+     .done(function(data){//データを受け取ることに成功したら、dataを引数に取って以下のことする(dataには@usersが入っている状態ですね)
+        $('#result').find('li').remove();  //idがresultの子要素のliを削除する
+        if(data.length !== 0){
+         $(data).each(function(i, result){ //dataをuserという変数に代入して、以下のことを繰り返し行う(単純なeach文ですね)
+          // $('#result').append('<li>' + '<a class="search_a"  href="/users/'+user.id+'">'+ user.name +'</a>'+ '</li>')//resultというidの要素に対して、<li>ユーザーの名前</li>を追加する。
+          $('#result').append('<li>' + '<a class="search_a"  href="/portfolios/'+result.id+'">'+ result.title +'</a>'+ '</li>')
+         });
+        } else {  $('#result').append('<li>' + "一致するキーワードがありません" + '</li>')
+        }
+     });
+   } else{
+     $('#result').find('li').remove();
+   }
   });
 });
 
