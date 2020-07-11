@@ -7,6 +7,7 @@ set :deploy_to, "/home/ec2-user/PortaAperta"
 set :rbenv_ruby, '2.6.3'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "public/system", "tmp"
+set :branch, ENV['BRANCH'] || "develop"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
