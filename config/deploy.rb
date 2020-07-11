@@ -2,7 +2,7 @@
 lock "~> 3.14.1"
 
 set :application, "PortaAperta"
-set :repo_url, "git@github.com:vonxar/PortaAperta.git"
+set :repo_url, "https://github.com/vonxar/PortaAperta.git"
 set :deploy_to, "/home/ec2-user/PortaAperta"
 set :rbenv_ruby, '2.6.3'
 set :linked_files, %w{config/master.key .env}
