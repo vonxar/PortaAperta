@@ -1,5 +1,5 @@
 <% if current_user.id == @user.id %>
- <%= render 'my_page', portfolio: @portfolio, user_portfolios: @user_portfolios, favorites: @favorites %>
+ <%= render 'users/my_page', portfolio: @portfolio, user_portfolios: @user_portfolios, favorites: @favorites %>
 <% else %>
  <%= render 'user_page', portfolio: @portfolio, user_portfolios: @user_portfolios, favorites: @favorites, user: @user %>
 <% end %>

@@ -104,10 +104,13 @@ class PortfoliosController < ApplicationController
     @portfolio.user_id = current_user.id
     if @portfolio.save
      redirect_to  top_path, notice: "投稿しました"
-    else
-      @user_portfolios = Portfolio.where(user_id: current_user.id)
-      @favorites = current_user.favorite_portfolios.includes(:user)
-      flash.now[:alert] = '失敗しました'
+    elsif params[:error_post] == "0"
+      render new_portfolio_path
+    elsif params[:error_post] == "1"
+      @user = current_user
+      @user_portfolios = Portfolio.where(user_id: current_user.id).page(params[:page]).per(4)
+      @favorites = current_user.favorite_portfolios.includes(:user).page(params[:page]).per(4)
+      flash.now[:alert] = "入力が適切ではありません"
       render "users/show"
     end
   end
