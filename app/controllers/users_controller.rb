@@ -42,8 +42,8 @@ class UsersController < ApplicationController
   end
   
   def check_guest
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+    if current_user.email == 'guest@example.com'
+      redirect_to top_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
   
