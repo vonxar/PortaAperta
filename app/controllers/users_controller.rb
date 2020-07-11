@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :user_only, only: %i[edit update]
-  
+  before_action :check_guest, only: %i[update destroy]
   
   def show
     @portfolio = Portfolio.new
@@ -38,6 +38,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.id != current_user.id
        redirect_to user_path(current_user.id), alert: "アクセスできません"
+    end
+  end
+  
+  def check_guest
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
   
