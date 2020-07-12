@@ -1,4 +1,5 @@
 <h1>ユーザー編集</h1>
+<%= render 'portfolios/errors', const: @user %>
 <%= form_for(@user) do |f| %>
     <div class="form-group has-icon">
     <%= f.label :name ,'Name' %>

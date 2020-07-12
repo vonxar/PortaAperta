@@ -1,10 +1,5 @@
  <h2>投稿</h2>
-   <% if @portfolio.errors.any? %>
-    <%= @portfolio.errors.count %> errors 
-    <% @portfolio.errors.full_messages.each do |message| %>
-     <%= message %>
-    <% end %>
-   <% end %>
+   <%=render 'portfolios/errors', const: @portfolio %>
     <%= form_for(portfolio, url:portfolios_path,method: "post") do |f| %>
   
      <div class="tag-field">
