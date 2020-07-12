@@ -71,7 +71,7 @@ class PortfoliosController < ApplicationController
               @page_views = @portfolio.impressionist_count
                               
               @reply_comment = ReplyComment.new
-              flash.now[:alert] = '失敗'
+              flash.now[:error] = '失敗'
               render 'portfolios/show'
           end
     end
@@ -131,7 +131,7 @@ class PortfoliosController < ApplicationController
         redirect_to top_path, notice: "編集を反映しました。"
     else
     	@user = current_user.id
-    	flash[:alert] = "失敗しました。"
+    	flash.now[:alert] = "失敗しました。"
     	render :edit
     end
   end

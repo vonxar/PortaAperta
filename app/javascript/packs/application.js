@@ -947,4 +947,3 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 
 
 
-
