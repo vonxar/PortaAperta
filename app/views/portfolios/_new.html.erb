@@ -1,4 +1,10 @@
  <h2>投稿</h2>
+   <% if @portfolio.errors.any? %>
+    <%= @portfolio.errors.count %> errors 
+    <% @portfolio.errors.full_messages.each do |message| %>
+     <%= message %>
+    <% end %>
+   <% end %>
     <%= form_for(portfolio, url:portfolios_path,method: "post") do |f| %>
   
      <div class="tag-field">
@@ -22,6 +28,7 @@
       <%= f.label '本文' %>
       <%= f.rich_text_area :body, maxlength: 1000%>
      </div>
+     <%= hidden_field_tag :error_post, a %>
      <div><%= f.submit "portfolio登録" ,class: "btn btn-primary",id: "tag_lists"%></div>
     <% end %><br>
   </div>

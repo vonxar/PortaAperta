@@ -1,4 +1,21 @@
-# PortaAperta
+
+## PortaAperta
+![サンプル](readme.png)
+
+### 環境
+- Rails 6.0.3
+- Ruby 2.6.3
+- cloud9
+
+## 使い方
+
+- 新規登録しなくても、ゲストユーザーとしてアクセスできます。
+使ってみてよかったら、新規登録してください。(ゲストユーザーの編集、削除はできません。)
+## 🌐 App URL
+http://prtaaperta.work/
+
+
+
 ## サイト概要
 portfolioの投稿サイト
 
@@ -27,5 +44,5 @@ https://docs.google.com/spreadsheets/d/1Ux16Of7pk0O2gQwcPCfKtup4-Ytjy4JDHUVjIll_
 Portafolio　イタリア語が語源
 
 Porta（運ぶ、支える、保つ　、扉、どあ）　ポルタ　イタリア語
-
 aperta　開いた・開いた（あいた・ひらいた）　アペルト イタリア語
+「扉を開く」

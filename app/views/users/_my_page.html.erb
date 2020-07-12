@@ -3,7 +3,9 @@
    <h5>マイページ</h5>
    <%= attachment_image_tag current_user, :profile_image, size: "150x120",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-bottom: 10px;"%><br>
    <div class="container">
-     <P><%= current_user.introduction.truncate(60) %></p>
+    <% if current_user.introduction != nil %>
+     <P class="introduction_text"><%= current_user.introduction.truncate(60) %></p>
+    <% end %>
       <div class="row">
        <div class="col-1"></div>
        <div class="col-2"><%= current_user.portfolios.count %></div>
@@ -31,7 +33,7 @@
 <!--投稿-->
 <div class="collapse" id="Post">
   <div class="card card-body">
-  <%= render 'portfolios/new', portfolio: portfolio %>
+  <%= render 'portfolios/new', portfolio: portfolio, a: 1 %>
 <!------------end------------>
 
 <!--投稿一覧-->
