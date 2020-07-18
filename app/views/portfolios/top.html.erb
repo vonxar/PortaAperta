@@ -6,20 +6,22 @@
    </ul>
   </div>
  
-  <div class="col-3">
-   <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <div class="col-6">
+   <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom: 10px;">
      タグ一覧
    </button>
  　 <div class="collapse" id="collapseExample">
      <% @tags.each do |tag| %>
       <% if tag.taggings_count > 0 %>
-       <span><%= link_to tag, top_path(tag_name: tag.name),class: "badge badge-primary" %><%= tag.taggings_count %></span>
+      <button type="button" class="btn btn-secondary" style="margin: 0 5px 5px 0;">
+       <span><%= link_to tag, top_path(tag_name: tag.name),class: "badge badge-secondary" %><%= tag.taggings_count %></span>
+       </button>
       <% end %>
      <% end %>
    </div>
   </div>
  <!--ソート機能-->
-  <div class="offset-3 col-3">
+  <div class=" col-3">
     <%= render 'select_form', portfolios: @portfolios %>
   </div>
 </div>

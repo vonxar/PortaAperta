@@ -14,7 +14,7 @@
        <div class="included">
          タグ: 
         <% port.tag_list.each do |tag| %>
-          <%= link_to tag, top_path(tag_name: tag),class: "badge badge-primary" %>
+          <%= link_to tag, top_path(tag_name: tag),class: "badge badge-secondary" %>
         <% end %><br>
          <%= port.comments.count %>件コメント
           <div class="row">
