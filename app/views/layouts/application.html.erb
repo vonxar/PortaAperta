@@ -21,6 +21,7 @@
                 <!-- 会員でログインしている時 -->
                 <% if user_signed_in? %>
                   <li class="nav-item"><%= link_to about_path do %><i class="fas fa-info-circle"></i> about<% end %></li>
+                  <li><%= link_to users_path do %>users<% end %></li>
                   <li><%= link_to portfolios_path do %><i class="fas fa-crown"></i> ランキング<% end %></li>
                   <li><%= link_to top_path do %><i class="far fa-file"></i> 一覧<% end %></li>
                   <%= link_to notifications_path do%>

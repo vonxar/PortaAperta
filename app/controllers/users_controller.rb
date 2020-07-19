@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action :user_only, only: %i[edit update]
   before_action :check_guest, only: %i[update destroy]
   
+  def index
+    @users = User.all
+  end
+  
   def show
     @portfolio = Portfolio.new
     @user = User.find(params[:id])
