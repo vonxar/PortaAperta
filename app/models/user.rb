@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :reply_comments, dependent: :destroy
   has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  has_many :messages
   
   validates :name, length: {in: 1..20}
   validates :name, presence:true
