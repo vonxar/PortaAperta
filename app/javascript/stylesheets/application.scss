@@ -450,3 +450,24 @@ p.kaiwa-text:last-child {
   content: "";
   display: block;
 }
+
+
+
+/* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
+@media screen and (max-width:1024px) {  
+  .nav-item > a{    
+    color: green;  
+  }
+}
+/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+@media screen and (max-width:768px) {  
+  ul > li{    
+    margin: 0;
+  }
+}
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width:425px) {  
+  .nav-item > a{
+    color: blue;
+  }
+}
