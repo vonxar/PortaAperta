@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    @chat = 0
     @portfolio = Portfolio.new
     @user = User.find(params[:id])
     if current_user.id == @user.id
@@ -16,6 +17,13 @@ class UsersController < ApplicationController
     else
       @user_portfolios = Portfolio.where(user_id: @user.id).page(params[:page]).per(4)
       @favorites = @user.favorite_portfolios.includes(:user).page(params[:page]).per(4)
+      if !Room.where(first_user_id: current_user.id,second_user_id: @user.id).present? && !Room.where(first_user_id: @user.id, second_user_id: current_user.id).present?
+        @chat = nil
+      elsif  Room.where(first_user_id: current_user.id,second_user_id: @user.id).present?
+        @room = Room.where(first_user_id: current_user.id)
+      elsif Room.where(first_user_id: @user.id, second_user_id: current_user.id).present?
+        @room = Room.where(second_user_id: current_user.id)
+      end
     end
   end
   

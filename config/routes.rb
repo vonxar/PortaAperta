@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   resources :categorys
   get '/about' => 'homes#about'
   get '/top' => 'portfolios#top'
+  resources :rooms, only: %i[show index new]
   
 end

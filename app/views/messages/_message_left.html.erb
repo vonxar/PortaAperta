@@ -1,0 +1,13 @@
+<div class="message">
+  <div class="kaiwa">
+    <figure class="kaiwa-img-left">
+      <%= attachment_image_tag portfolio_image, :portfolio_image, size: "500x400",  fallback: "noimage.svg", class: "portfolio_image"%
+      <figcaption class="kaiwa-img-description">
+        <%= message.user.name %>
+      </figcaption>
+    </figure>
+    <div class="kaiwa-text-left">
+      <%= simple_format(message.content) %>
+    </div>
+  </div>
+</div>

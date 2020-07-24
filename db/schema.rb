@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_095306) do
+ActiveRecord::Schema.define(version: 2020_07_20_070118) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(version: 2020_07_07_095306) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "visiter_id"
     t.integer "visited_id"
@@ -127,6 +137,14 @@ ActiveRecord::Schema.define(version: 2020_07_07_095306) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "first_user_id"
+    t.integer "second_user_id"
+    t.string "user_name"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -177,5 +195,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_095306) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "taggings", "tags"
 end
