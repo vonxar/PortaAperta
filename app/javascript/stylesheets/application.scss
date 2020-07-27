@@ -451,6 +451,9 @@ p.kaiwa-text:last-child {
   display: block;
 }
 
+footer {
+  display: none;
+}
 
 
 /* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
@@ -466,8 +469,30 @@ p.kaiwa-text:last-child {
   }
 }
 /* スマートフォンサイズ（425px）以下の際に適用される設定 */
-@media screen and (max-width:425px) {  
+@media screen and (max-width:425px) {
+  body {
+    height: 1500px;
+  }
   .nav-item > a{
     color: blue;
+  }
+  footer {
+    display: block;
+  }
+  header > nav {
+    position:fixed;
+    bottom: 0;
+    z-index: 90000;
+    width: 100%;
+    ul > span{
+      display: none;
+    }
+  }
+  ul{
+    display: flex;
+    margin: 0;
+    li{
+      flex: 1;
+    }
   }
 }

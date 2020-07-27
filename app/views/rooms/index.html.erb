@@ -1,7 +1,8 @@
 <div>
   <ul>
     <% @rooms.each do |room| %>
-      <p><%= link_to "#{room.user_name}", room_path(room) %></p>
+     <% @user = User.where(name: room.user_name).first %>
+       <p><%= link_to "#{room.user_name}", room_path(room) %></p>
     <% end %>
   </ul>
 </div>
