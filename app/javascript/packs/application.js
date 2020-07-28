@@ -1,3 +1,5 @@
+
+
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -176,7 +178,35 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 //---------end------------
 
 
-// rate 評価星機能
+
+
+
+
+
+//425
+
+// スマートフォンで全画面表示
+$(document).ready(function(){
+var hSize = $(window).width();
+if (hSize < 425  ){
+  $('.btn-group').addClass('dropup');
+} else {
+    $('.btn-group').removeClass('.dropup')
+  }
+});
+$(window).resize(function(){ // ページをリサイズした時の処理
+var hSize = $(window).width();
+console.log(hSize);
+if (hSize < 425  ){
+  $('.btn-group').addClass('dropup'); 
+ } else {
+    $('.btn-group').removeClass('dropup')
+  }
+});
+// -------end-------------
+
+
+// 星
 /*!
  * jQuery Raty - A Star Rating Plugin
  *
@@ -940,31 +970,4 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
     targetType:   'hint'
   };
 })(jQuery);
-
-// end----------------------
-
-
-
-
-
-//425
-
-// スマートフォンで全画面表示
-$(document).ready(function(){
-var hSize = $(window).width();
-if (hSize < 425  ){
-  $('.btn-group').addClass('dropup');
-} else {
-    $('.btn-group').removeClass('.dropup')
-  }
-});
-$(window).resize(function(){ // ページをリサイズした時の処理
-var hSize = $(window).width();
-console.log(hSize);
-if (hSize < 425  ){
-  $('.btn-group').addClass('dropup'); 
- } else {
-    $('.btn-group').removeClass('.dropup')
-  }
-});
-// -------end-------------
+// -------end---------
