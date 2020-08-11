@@ -1,16 +1,16 @@
 <h1>ユーザー編集</h1>
-<%= render 'portfolios/errors', const: @user %>
-<%= form_for(@user) do |f| %>
+ <%= render 'portfolios/errors', const: @user %>
+  <%= form_for(@user) do |f| %>
     <div class="form-group has-icon">
-    <%= f.label :name ,'Name' %>
-    <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+     <%= f.label :name ,'Name' %>
+     <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
     </div>
-     <div class="portfolio-image">
+    <div class="portfolio-image">
       <%= attachment_image_tag current_user, :profile_image, size: "300x200",  fallback: "noimage.svg"%><br>
-     </div><br>
-    <%= f.label :profile_image,'Image' %>
-    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-    <%= f.text_area :introduction ,autofocus: true,class:"form-control",size: "20x20", placeholder: "自己紹介" %>
-    <%= f.submit "登録", class:"btn btn-lg  btn-primary" %>
-<% end %>
+    </div><br>
+     <%= f.label :profile_image,'Image' %>
+     <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+     <%= f.text_area :introduction ,autofocus: true,class:"form-control",size: "20x20", placeholder: "自己紹介" %>
+     <%= f.submit "登録", class:"btn btn-lg  btn-primary" %>
+  <% end %>
 

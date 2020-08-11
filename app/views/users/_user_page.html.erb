@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-2">
    <h5><%= user.name %>ページ</h5>
+   <% if @chat == nil  %>
+    <%= link_to 'チャットを始める', new_room_path(user.id) %>
+   <% else %>
+    <%= link_to 'チャットをする', room_path %>
+   <% end %>
      <%= attachment_image_tag user, :profile_image, size: "150x120",  fallback: "my_noimage.jpg" ,style: "border-radius: 50%; margin-bottom: 10px;"%><br>
      <div><i class="fas fa-file-powerpoint" style="color:blue;"></i><%= user.portfolios.count %><i class="fas fa-star" style="color:gold;"></i><%= user.favorites.count %></div>
   </div>

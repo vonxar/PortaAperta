@@ -116,14 +116,14 @@ $(function() {
     $('input').on("keydown",function(e){ //キーボードでキーが押された時発動
     if  (e.keyCode == 188 && $('#portfolio_tag_list').val().length > 0) { //キーの　,（カンマ）が押され　かつ　入力が1文字以上されている時
         var btn = $('#portfolio_tag_list').val(); //入力された情報を　btn　に代入
-        $('.output').append('<span class="badge badge-primary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //タグ入力欄のしたにタグ化したバッジを追加+削除用クラス追加
+        $('.output').append('<span class="badge badge-secondary"id='+btn+'>'+btn+"    "+'<a class="remove_tag">'+'︎❌'+'</a>'+'</span>'+" "); //タグ入力欄のしたにタグ化したバッジを追加+削除用クラス追加
         $("#portfolio_tag_list").val(""); //タグ欄を空に
         return false; //押された　,(カンマ)を返さない。よって、入力欄に,(カンマ)は入らない
       } else if (e.keyCode == 188) { //入力欄に文字がなく、 ,（カンマ）が押された時
          return false; // 上記と同じ
         }
     });
-      $('body').on('click','.badge-primary',function(){ //クリックされたら
+      $('body').on('click','.badge-secondary',function(){ //クリックされたら
        var id =  $(this).attr("id"); //クリックされた要素のidの中身を　idに代入
        $('#'+id).remove(); //取得した情報でクリックされた要素を消す
       });
