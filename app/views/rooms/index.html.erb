@@ -2,7 +2,7 @@
   <ul>
     <% @rooms.each do |room| %>
      <% @user = User.where(name: room.user_name).first %>
-       <p><%= link_to "#{room.user_name}", room_path(room) %></p>
+       <p><%= link_to "#{room.user_name}", room_path(room),data: {turbolinks: "false"} %></p>
     <% end %>
   </ul>
 </div>
