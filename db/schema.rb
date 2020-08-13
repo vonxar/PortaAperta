@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_070118) do
+ActiveRecord::Schema.define(version: 2020_07_27_033237) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2020_07_20_070118) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "first_user_id"
     t.integer "second_user_id"
-    t.string "user_name"
+    t.text "user_name"
   end
 
   create_table "taggings", force: :cascade do |t|
