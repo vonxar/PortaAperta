@@ -40,3 +40,5 @@
 yarn-debug.log*
 .yarn-integrity
 /.env
+/sqlite-autoconf-3290000.tar
+/sqlite-autoconf-3300100.tar

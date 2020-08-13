@@ -10,7 +10,8 @@ class RoomsController < ApplicationController
     room = Room.create!
     room.first_user_id = current_user.id
     room.second_user_id = params[:format]
-    room.user_name = @user.name
+    retu = [@user.name,current_user.name]
+    room.user_name = @user.name+" "+ "-----" +" "+current_user.name
     room.save
     redirect_to room_path(room)
   end

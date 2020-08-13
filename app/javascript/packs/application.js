@@ -1,3 +1,5 @@
+
+
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -31,13 +33,13 @@ require("@rails/actiontext")
 
 //userページのスクロール機能
  $(function(){
-    // #で始まるリンクをクリックしたら実行されます
+    // #で始まるリンクを押したら実行
     $('a[href^="#"]').click(function() {
      if ($(this).attr("href") == '#top_post') {
        $('.post_btn').trigger('click');
      };
-      // スクロールの速度
-      var speed = 400; // ミリ秒で記述
+      // スクロール速度
+      var speed = 400; // ミリ秒
       var href= $(this).attr("href");
       var target = $(href == "#" || href == "" ? 'html' : href);
       var position = target.offset().top;
@@ -52,25 +54,25 @@ document.addEventListener("turbolinks:load",function() {
   var appear = false;
   var pagetop = $('#page_top');
   $(window).scroll(function () {
-   if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
+   if ($(this).scrollTop() > 100) {
      if (appear == false) {
        appear = true;
        pagetop.stop().animate({
-       'right': '0px' //右から0pxの位置に
-       }, 300); //0.3秒かけて現れる
+       'right': '0px'
+       }, 300); 
      }
    } else {
      if (appear) {
         appear = false;
         pagetop.stop().animate({
-        'right': '-50px' //右から-50pxの位置に
-        }, 300); //0.3秒かけて隠れる
+        'right': '-50px'
+        }, 300);
      }
    }
   });
   
   pagetop.click(function () {
-  $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
+  $('body, html').animate({ scrollTop: 0 }, 500); //トップへ
   return false;
   });
 });
@@ -176,7 +178,35 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
 //---------end------------
 
 
-// rate 評価星機能
+
+
+
+
+
+//425
+
+// スマートフォンで全画面表示
+$(document).ready(function(){
+var hSize = $(window).width();
+if (hSize < 425  ){
+  $('.btn-group').addClass('dropup');
+} else {
+    $('.btn-group').removeClass('.dropup')
+  }
+});
+$(window).resize(function(){ // ページをリサイズした時の処理
+var hSize = $(window).width();
+console.log(hSize);
+if (hSize < 425  ){
+  $('.btn-group').addClass('dropup'); 
+ } else {
+    $('.btn-group').removeClass('dropup')
+  }
+});
+// -------end-------------
+
+
+// 星
 /*!
  * jQuery Raty - A Star Rating Plugin
  *
@@ -940,10 +970,4 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
     targetType:   'hint'
   };
 })(jQuery);
-
-// end----------------------
-
-
-
-
-
+// -------end---------

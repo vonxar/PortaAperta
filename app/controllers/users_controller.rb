@@ -20,9 +20,9 @@ class UsersController < ApplicationController
       if !Room.where(first_user_id: current_user.id,second_user_id: @user.id).present? && !Room.where(first_user_id: @user.id, second_user_id: current_user.id).present?
         @chat = nil
       elsif  Room.where(first_user_id: current_user.id,second_user_id: @user.id).present?
-        @room = Room.where(first_user_id: current_user.id)
+         @room = Room.where(first_user_id: current_user.id,second_user_id: params[:id]).first
       elsif Room.where(first_user_id: @user.id, second_user_id: current_user.id).present?
-        @room = Room.where(second_user_id: current_user.id)
+         @room = Room.where(second_user_id: current_user.id,first_user_id: params[:id]).first
       end
     end
   end

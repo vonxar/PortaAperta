@@ -6,7 +6,7 @@
       <% position = 'left' %>
     <% end %>
     <figure class="kaiwa-img-<%= position %>">
-      <%= attachment_image_tag message.user, :profile_image, size: "500x400",  fallback: "noimage.svg", class: "portfolio_image"%>
+      <%= attachment_image_tag message.user, :profile_image, size: "500x400",  fallback: "my_noimage.jpg", class: "portfolio_image"%>
       <figcaption class="kaiwa-img-description">
         <%= message.user.name %>
       </figcaption>
