@@ -1,6 +1,6 @@
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
-  before_action :portfolio_Validation ,only: %i[edit destroy]
+  before_action :portfolio_Validation ,only: :edit
   
   
   def top
@@ -138,6 +138,10 @@ class PortfoliosController < ApplicationController
   
   def destroy
     if params[:portfolio_destroy] == "1"
+        @portfolio = Portfolio.find(params[:id])
+        if  @portfolio.user_id != current_user.id
+         redirect_to user_path(current_user), alert: "アクセスできません"
+        end
         @portfolio.destroy
         redirect_to top_path
     elsif params[:comment_destroy] == "2"

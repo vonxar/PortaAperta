@@ -7,13 +7,15 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('favicon.ico') %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
     />
     <script src="https://kit.fontawesome.com/f95b9e0dc0.js" crossorigin="anonymous"></script>
+    <!--<script src="app/javascript/packs/raty.js"></script>-->
   </head>
-  <heder>
+  <header>
             <nav>
               <ul class="navbar nav-pills navbar-dark bg-dark justify-content-end sticky-top ">
                <span class="text-left logo animate__animated animate__fadeInLeftBig " style= "font-size:25px; color:red; margin-right: auto;">PORTA APERTA</span>
@@ -56,7 +58,7 @@
               </ul>
             </nav>
            
-  </heder>
+  </header>
 
       <body>
        <%= flash_message(flash[:success], :success) if flash[:success] %> <!--緑 flash messge application_helperに記述-->
@@ -67,5 +69,7 @@
          <%= yield %>
          <div id="page_top"><a href="#"></a></div>
        </div>
+       <footer>
+       </footer>
       </body>
 </html>
