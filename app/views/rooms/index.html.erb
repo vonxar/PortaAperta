@@ -1,8 +1,10 @@
 <div>
   <ul>
     <% @rooms.each do |room| %>
-     <% @user = User.where(name: room.user_name).first %>
+     <% if current_user.id == room.first_user_id || current_user.id == second_user_id %>
+       <% @user = User.where(name: room.user_name).first %>
        <p><%= link_to "#{room.user_name}", room_path(room),data: {turbolinks: "false"} %></p>
+     <% end %>
     <% end %>
   </ul>
 </div>
