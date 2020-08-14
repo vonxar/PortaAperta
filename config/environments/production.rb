@@ -46,8 +46,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+   config.action_cable.url = 'ws://prtaaperta.work/cable'
+   config.action_cable.allowed_request_origins = [ 'http://prtaaperta.work', /http:\/\/prtaaperta.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -94,8 +94,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_cable.allowed_request_origins = ["http://prtaaperta.work", /https:\/\/app_name.*/ ]
-  config.action_cable.disable_request_forgery_protection = true
+  
+  #config.action_cable.disable_request_forgery_protection = true
+  
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write
