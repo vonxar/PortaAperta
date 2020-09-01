@@ -4,7 +4,7 @@
 
 ### 開発環境
 - OS
-Linux(Ubuntu)
+Linux(CentOS)
 
 - 言語
 HTML,CSS,JavaScript,Ruby2.6.3,SQL,Rails6.0.3
